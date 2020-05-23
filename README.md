@@ -18,7 +18,7 @@ For more information or how to install the terraform CLI, goto
 
 2. Configure AWS credentials, [follow the guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
 
-3. Change directory to `tf_eks`, update `terraform.tfvars` if needed, run `terraform init` and `terraform apply`.
+3. Change directory to `aws/tf_eks`, update `terraform.tfvars` if needed, run `terraform init` and `terraform apply`.
 
 ## Setting up kubectl
 If you haven't installed kubectl
