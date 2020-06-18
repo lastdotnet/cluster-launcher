@@ -30,10 +30,10 @@ In choosing a provider, you will find at the root of this repository, a
 directory with your provider name. If you do not see it, create it and open a
 pull request so that others in the community can benefit from your work.
 
-For more information or how to install the terraform CLI, goto [https://www.terraform.io/](https://www.terraform.io).
+For more information or how to install the terraform CLI, goto [https://www.terraform.io](https://www.terraform.io).
 
 
-# Provider available
+## Provider available
 
   * AWS [documentation here](docs/aws.md)
   * Digital Ocean [TODO]
