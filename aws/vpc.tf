@@ -1,5 +1,6 @@
 module "vpc" {
-  source               = "github.com/terraform-aws-modules/terraform-aws-vpc?ref=v2.33.0"
+  source  = "terraform-aws-modules/vpc/aws"
+
   name                 = var.cluster_name
   cidr                 = var.vpc_cidr
   azs                  = [for az in var.az : format("%s%s", var.region, az)]
