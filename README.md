@@ -33,7 +33,7 @@ pull request so that others in the community can benefit from your work.
 For more information or how to install the terraform CLI, goto [https://www.terraform.io](https://www.terraform.io).
 
 
-## Provider available
+### Provider available
 
   * AWS [documentation here](docs/aws.md)
   * Digital Ocean [TODO]
