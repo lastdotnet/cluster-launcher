@@ -4,9 +4,15 @@ module "vpc" {
   name                 = var.cluster_name
   cidr                 = var.vpc_cidr
   azs                  = [for az in var.az : format("%s%s", var.region, az)]
-  public_subnets       = [cidrsubnet(var.vpc_cidr, 9, 0), cidrsubnet(var.vpc_cidr, 9, 1), cidrsubnet(var.vpc_cidr, 9, 2)]
-  enable_nat_gateway   = false
+  private_subnets      = [cidrsubnet(var.vpc_cidr, 8, 1), cidrsubnet(var.vpc_cidr, 8, 2), cidrsubnet(var.vpc_cidr, 8, 3)]
+  public_subnets       = [cidrsubnet(var.vpc_cidr, 8, 4), cidrsubnet(var.vpc_cidr, 8, 5), cidrsubnet(var.vpc_cidr, 8, 6)]
+  enable_nat_gateway   = true
+  single_nat_gateway   = true
   enable_dns_hostnames = true
+
+  tags = {
+    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
+  }
 
   public_subnet_tags = {
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
