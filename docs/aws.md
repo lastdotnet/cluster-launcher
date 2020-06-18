@@ -13,7 +13,7 @@ Deploy a Kubernetes cluster in AWS using EKS service.
 
 ### AWS CLI
 
-In order for Terraform to run operations on your behalf,you must install and configure the AWS CLI tool.
+In order for Terraform to run operations on your behalf, you must install and configure the AWS CLI tool.
 To install the AWS CLI, follow [these instructions](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html)
 or choose a package manager based on your operating system.
 
