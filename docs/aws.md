@@ -126,7 +126,7 @@ terraform apply
 
 ## Configure kubectl
 
-Kubectl config will be generated at `tf_eks/kubeconfig_<cluster name>`.
+Kubectl config will be generated at `aws/kubeconfig_<cluster name>`.
 You can get the cluster name from the previous output after the succesful Terraform run.
 You can view these outputs again by running:
 
@@ -137,7 +137,7 @@ terraform output
 Use the command below to export the kubectl configuration generated automatically and check your cluster version:
 
 ```bash
-export KUBECONFIG=$PWD/tf_eks/kubeconfig_<cluster_name>
+export KUBECONFIG=$PWD/kubeconfig_<cluster_name>
 kubectl version
 ```
 
