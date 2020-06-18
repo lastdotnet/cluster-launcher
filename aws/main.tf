@@ -1,7 +1,7 @@
 module "eks" {
   source       = "terraform-aws-modules/eks/aws"
   cluster_name = var.cluster_name
-  subnets      = module.vpc.private_subnets
+  subnets      = module.vpc.public_subnets
   vpc_id       = module.vpc.vpc_id
   tags         = merge({ "Name" = var.cluster_name }, var.tags)
 
