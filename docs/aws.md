@@ -126,11 +126,11 @@ terraform apply
 
 ## Configure kubectl
 
-Kubectl config will be generated at `aws/kubeconfig_<cluster name>`.
-Use the command below to export the kubectl configuration generated automatically and check your cluster version:
+Now that you've provisioned your EKS cluster, you need to configure kubectl.
+Customize the following command with your cluster name and region. It will get the access credentials for your cluster and automatically configure kubectl.
 
 ```bash
-export KUBECONFIG=$PWD/kubeconfig_<cluster_name>
+aws eks --region <cluster_region> update-kubeconfig --name <cluster_name>
 kubectl version
 ```
 
