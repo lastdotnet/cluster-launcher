@@ -5,24 +5,16 @@ module "eks" {
   vpc_id       = module.vpc.vpc_id
   tags         = merge({ "Name" = var.cluster_name }, var.tags)
 
-  node_groups_defaults = {
-    ami_type  = "AL2_x86_64"
-    disk_size = var.node_group_settings["disk_size"]
-  }
-
-  node_groups = {
-    main = {
-      desired_capacity = var.node_group_settings["desired_capacity"]
-      max_capacity     = var.node_group_settings["max_capacity"]
-      min_capacity     = var.node_group_settings["min_capacity"]
-      instance_type    = var.node_group_settings["instance_type"]
-
-      k8s_labels = {
-        Environment = "${var.cluster_name}-${var.region}"
-      }
-      additional_tags = var.tags
+  worker_groups = [
+    {
+      instance_type                 = var.node_group_settings["instance_type"]
+      asg_desired_capacity          = var.node_group_settings["desired_capacity"]
+      asg_max_size                  = var.node_group_settings["max_capacity"]
+      asg_min_size                  = var.node_group_settings["min_capacity"]
+      root_volume_size              = var.node_group_settings["disk_size"]
+      additional_security_group_ids = [aws_security_group.worker_thornode.id]
     }
-  }
+  ]
 
   enable_irsa = true
   cluster_enabled_log_types = [
