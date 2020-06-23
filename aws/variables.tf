@@ -4,17 +4,20 @@ variable "region" {
 }
 
 variable "az" {
+  description = "AWS availability zones"
   default = ["a", "b", "c"]
 }
 
 variable "vpc_cidr" {
   description = "VPC cidr"
   type        = string
+  default     = "10.0.0.0/16"
 }
 
 variable "cluster_version" {
   description = "EKS cluster version"
   type        = string
+  default     = "1.16"
 }
 
 variable "cluster_name" {
@@ -25,7 +28,10 @@ variable "cluster_name" {
 variable "tags" {
   description = "Tags"
   type        = map(string)
-  default     = null
+  default     = {
+    Terraform = true
+    THORNode  = true
+  }
 }
 
 variable "node_group_settings" {
@@ -35,7 +41,7 @@ variable "node_group_settings" {
     desired_capacity = 1
     max_capacity     = 1
     min_capacity     = 1
-    instance_type    = "t3.medium"
-    disk_size        = 20
+    instance_type    = "t3.xlarge"
+    disk_size        = 100
   }
 }

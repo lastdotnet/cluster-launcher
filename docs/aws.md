@@ -118,7 +118,6 @@ Use the commands below to deploy an AWS EKS cluster.
 
 ```bash
 cd aws/
-vim terraform.tfvars # optional
 terraform init
 terraform plan # to see the plan
 terraform apply

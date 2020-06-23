@@ -13,6 +13,18 @@ module "eks" {
       asg_min_size                  = var.node_group_settings["min_capacity"]
       root_volume_size              = var.node_group_settings["disk_size"]
       additional_security_group_ids = [aws_security_group.worker_thornode.id]
+      tags = [
+        {
+          "key"                 = "k8s.io/cluster-autoscaler/enabled"
+          "propagate_at_launch" = "false"
+          "value"               = "true"
+        },
+        {
+          "key"                 = "k8s.io/cluster-autoscaler/${var.cluster_name}"
+          "propagate_at_launch" = "false"
+          "value"               = "true"
+        }
+      ]
     }
   ]
 
