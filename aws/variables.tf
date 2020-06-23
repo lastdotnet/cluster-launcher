@@ -39,7 +39,7 @@ variable "node_group_settings" {
   type        = map(string)
   default = {
     desired_capacity = 1
-    max_capacity     = 1
+    max_capacity     = 4
     min_capacity     = 1
     instance_type    = "t3.xlarge"
     disk_size        = 100
