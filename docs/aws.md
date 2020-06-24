@@ -116,6 +116,14 @@ mkdir -p ~/.terraform.d/plugins && \
 
 Use the commands below to deploy an AWS EKS cluster.
 
+You can run the make command that automates those command for you like this:
+
+```bash
+make aws
+```
+
+Or manually run each commands:
+
 ```bash
 cd aws/
 terraform init
@@ -138,5 +146,12 @@ kubectl version
 To destroy and remove previously created resources, you can run the command below.
 
 ```bash
+make aws-destroy
+```
+
+Or run the commands manually:
+
+```bash
+cd aws/
 terraform destroy
 ```
