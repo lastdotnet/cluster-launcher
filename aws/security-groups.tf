@@ -75,8 +75,28 @@ resource "aws_security_group" "worker_thornode" {
 
   ingress {
     description = "Midgard"
-    from_port = 8080
-    to_port   = 8080
+    from_port = 30080
+    to_port   = 30080
+    protocol  = "tcp"
+
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    description = "Binance Testnet P2P"
+    from_port = 30656
+    to_port   = 30656
+    protocol  = "tcp"
+
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    description = "Binance Mainnet P2P"
+    from_port = 30146
+    to_port   = 30146
     protocol  = "tcp"
 
     cidr_blocks = ["0.0.0.0/0"]
