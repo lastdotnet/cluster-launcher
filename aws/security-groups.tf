@@ -103,6 +103,26 @@ resource "aws_security_group" "worker_thornode" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
+  ingress {
+    description = "Binance Testnet RPC"
+    from_port = 30657
+    to_port   = 30657
+    protocol  = "tcp"
+
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    description = "Binance Mainnet RPC"
+    from_port = 30147
+    to_port   = 30147
+    protocol  = "tcp"
+
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
   tags = {
     Name = "thornode-sg"
   }
