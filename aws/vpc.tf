@@ -4,8 +4,8 @@ module "vpc" {
   name                    = var.cluster_name
   cidr                    = var.vpc_cidr
   azs                     = [for az in var.az : format("%s%s", var.region, az)]
-  private_subnets         = [cidrsubnet(var.vpc_cidr, 8, 1), cidrsubnet(var.vpc_cidr, 8, 2), cidrsubnet(var.vpc_cidr, 8, 3)]
-  public_subnets          = [cidrsubnet(var.vpc_cidr, 8, 4), cidrsubnet(var.vpc_cidr, 8, 5), cidrsubnet(var.vpc_cidr, 8, 6)]
+  private_subnets         = [cidrsubnet(var.vpc_cidr, 4, 1), cidrsubnet(var.vpc_cidr, 4, 2), cidrsubnet(var.vpc_cidr, 4, 3)]
+  public_subnets          = [cidrsubnet(var.vpc_cidr, 4, 4), cidrsubnet(var.vpc_cidr, 4, 5), cidrsubnet(var.vpc_cidr, 4, 6)]
 
   enable_nat_gateway   = true
   single_nat_gateway   = true
