@@ -146,7 +146,7 @@ kubectl version
 To destroy and remove previously created resources, you can run the command below.
 
 ```bash
-make aws-destroy
+make destroy-aws
 ```
 
 Or run the commands manually:

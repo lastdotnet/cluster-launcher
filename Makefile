@@ -4,4 +4,10 @@ aws:
 destroy-aws:
 	cd aws && terraform destroy
 
-.PHONY: aws destroy-aws
+do:
+	cd do && terraform init && terraform apply
+
+destroy-do:
+	cd do && terraform destroy
+
+.PHONY: aws destroy-aws do destroy-do
