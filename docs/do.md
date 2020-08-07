@@ -3,9 +3,41 @@ Deploy a Kubernetes cluster in DigitalOcean.
 
 ## Requirements
  * an DO account
+ * doctl
  * kubectl
 
 ## Install requirements
+
+### doctl
+
+To install the doctl (DigitalOcean CLI), follow [these instructions](https://www.digitalocean.com/docs/apis-clis/doctl/how-to/install/)
+or choose a package manager based on your operating system.
+
+MacOS:
+
+Use the package manager [homebrew](https://formulae.brew.sh/) to install kubectl.
+
+```bash
+brew install doctl
+```
+
+Windows:
+
+Use the package manager [Chocolatey](https://chocolatey.org/) to install kubectl.
+
+```bash
+choco install doctl
+```
+
+Create a DigitalOcean API token for your account with read and write access from the [Applications & API page](https://cloud.digitalocean.com/account/api/tokens) in the control panel.
+The token string is only displayed once, so save it in a safe place.
+
+Use the API token to grant doctl access to your DigitalOcean account.
+Pass in the token string when prompted by doctl auth init, and give this authentication context a name.
+
+```bash
+doctl auth init --context <NAME>
+```
 
 ### kubectl
 
@@ -70,10 +102,16 @@ terraform apply
 ## Configure kubectl
 
 Now that you've provisioned your Kubernetes cluster, you need to configure kubectl.
-By default a kubeconfig file was created at `~/.kube/config-do`, if you don't already have a kubeconfig file
-at the default location `~/.kube/config`, then you can rename your DigitalOcean kubeconfig file to the default `~/.kube/config`
-expected by kubectl.
-If you already have a kubeconfig file at `~/.kube/config`, then you need to manually edit and merge the sections needed from the DigitalOcean kubeconfig.
+You can follow this [guide](https://www.digitalocean.com/docs/kubernetes/how-to/connect-to-cluster/).
+
+To configure authentication from the command line, use the following command, substituting the name of your cluster.
+
+```bash
+doctl kubernetes cluster kubeconfig save <use_your_cluster_name>
+```
+
+This downloads the kubeconfig for the cluster, merges it with any existing configuration from ~/.kube/config,
+and automatically handles the authentication token or certificate.
 
 Once done, you can check your cluster is responding correctly by running the command:
 
