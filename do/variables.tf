@@ -30,7 +30,7 @@ variable "node_group_settings" {
   default = {
     min_capacity     = 1
     max_capacity     = 5
-    instance_type    = "g-8vcpu-32gb"
+    instance_type    = "s-8vcpu-32gb"
   }
 }
 
