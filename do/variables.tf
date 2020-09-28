@@ -29,7 +29,7 @@ variable "node_group_settings" {
   type        = map(string)
   default = {
     min_capacity     = 1
-    max_capacity     = 5
+    max_capacity     = 10
     instance_type    = "g-8vcpu-32gb"
   }
 }
