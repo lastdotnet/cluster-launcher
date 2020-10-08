@@ -1,5 +1,7 @@
+data "aws_region" "current" {}
+
 resource "aws_iam_role" "dlm_lifecycle_role" {
-  name = "dlm-lifecycle-role"
+  name = "dlm-lifecycle-role-${data.aws_region.current.name}"
 
   assume_role_policy = <<EOF
 {
@@ -19,7 +21,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "dlm_lifecycle" {
-  name = "dlm-lifecycle-policy"
+  name = "dlm-lifecycle-policy-${data.aws_region.current.name}"
   role = aws_iam_role.dlm_lifecycle_role.id
 
   policy = <<EOF
@@ -41,7 +43,7 @@ resource "aws_iam_role_policy" "dlm_lifecycle" {
          "Action": [
             "ec2:CreateTags"
          ],
-         "Resource": "arn:aws:ec2:*::snapshot/*"
+         "Resource": "arn:aws:ec2:${data.aws_region.current.name}:*::snapshot/*"
       }
    ]
 }
