@@ -36,8 +36,3 @@ module "eks" {
   cluster_version  = var.cluster_version
   write_kubeconfig = true
 }
-
-module "backups" {
-  source = "./backups"
-  count = "${var.backups ? 1 : 0}"
-}

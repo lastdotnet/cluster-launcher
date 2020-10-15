@@ -45,8 +45,3 @@ variable "node_group_settings" {
     disk_size        = 100
   }
 }
-
-variable "backups" {
-  description = "Use AWS Data Lifecycle Manager to automatically schedule daily backups of Kubernetes PVCs (true/false)"
-  type = bool
-}
