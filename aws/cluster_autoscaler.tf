@@ -224,6 +224,7 @@ resource "kubernetes_role_binding" "auto_scaler" {
 resource "kubernetes_deployment" "cluster_autoscaler" {
   metadata {
     name = "cluster-autoscaler"
+    namespace = "kube-system"
     labels = {
       app = "cluster-autoscaler"
     }
@@ -244,12 +245,13 @@ resource "kubernetes_deployment" "cluster_autoscaler" {
           app = "cluster-autoscaler"
         }
         annotations = {
-          prometheus.io/scrape = "true"
-          prometheus.io/port = "8085"
+          "prometheus.io/scrape" = "true"
+          "prometheus.io/port" = "8085"
         }
       }
 
       spec {
+        automount_service_account_token = true
         service_account_name = "cluster-autoscaler"
         container {
           image = "k8s.gcr.io/cluster-autoscaler:v1.18.0"
