@@ -51,173 +51,246 @@ data "aws_iam_policy_document" "cluster_autoscaler" {
   }
 }
 
-resource "kubectl_manifest" "cluster_autoscaler" {
-  yaml_body = <<YAML
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  labels:
-    k8s-addon: cluster-autoscaler.addons.k8s.io
-    k8s-app: cluster-autoscaler
-  name: cluster-autoscaler
-  namespace: kube-system
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: cluster-autoscaler
-  labels:
-    k8s-addon: cluster-autoscaler.addons.k8s.io
-    k8s-app: cluster-autoscaler
-rules:
-  - apiGroups: [""]
-    resources: ["events", "endpoints"]
-    verbs: ["create", "patch"]
-  - apiGroups: [""]
-    resources: ["pods/eviction"]
-    verbs: ["create"]
-  - apiGroups: [""]
-    resources: ["pods/status"]
-    verbs: ["update"]
-  - apiGroups: [""]
-    resources: ["endpoints"]
-    resourceNames: ["cluster-autoscaler"]
-    verbs: ["get", "update"]
-  - apiGroups: [""]
-    resources: ["nodes"]
-    verbs: ["watch", "list", "get", "update"]
-  - apiGroups: [""]
-    resources:
-      - "pods"
-      - "services"
-      - "replicationcontrollers"
-      - "persistentvolumeclaims"
-      - "persistentvolumes"
-    verbs: ["watch", "list", "get"]
-  - apiGroups: ["extensions"]
-    resources: ["replicasets", "daemonsets"]
-    verbs: ["watch", "list", "get"]
-  - apiGroups: ["policy"]
-    resources: ["poddisruptionbudgets"]
-    verbs: ["watch", "list"]
-  - apiGroups: ["apps"]
-    resources: ["statefulsets", "replicasets", "daemonsets"]
-    verbs: ["watch", "list", "get"]
-  - apiGroups: ["storage.k8s.io"]
-    resources: ["storageclasses", "csinodes"]
-    verbs: ["watch", "list", "get"]
-  - apiGroups: ["batch", "extensions"]
-    resources: ["jobs"]
-    verbs: ["get", "list", "watch", "patch"]
-  - apiGroups: ["coordination.k8s.io"]
-    resources: ["leases"]
-    verbs: ["create"]
-  - apiGroups: ["coordination.k8s.io"]
-    resourceNames: ["cluster-autoscaler"]
-    resources: ["leases"]
-    verbs: ["get", "update"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: cluster-autoscaler
-  namespace: kube-system
-  labels:
-    k8s-addon: cluster-autoscaler.addons.k8s.io
-    k8s-app: cluster-autoscaler
-rules:
-  - apiGroups: [""]
-    resources: ["configmaps"]
-    verbs: ["create","list","watch"]
-  - apiGroups: [""]
-    resources: ["configmaps"]
-    resourceNames: ["cluster-autoscaler-status", "cluster-autoscaler-priority-expander"]
-    verbs: ["delete", "get", "update", "watch"]
+resource "kubernetes_service_account" "cluster_autoscaler" {
+  metadata {
+    name = "cluster-autoscaler"
+    namespace = "kube-system"
+    labels = {
+      k8s-addon = "cluster-autoscaler.addons.k8s.io"
+      k8s-app = "cluster-autoscaler"
+    }
+  }
+}
 
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: cluster-autoscaler
-  labels:
-    k8s-addon: cluster-autoscaler.addons.k8s.io
-    k8s-app: cluster-autoscaler
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-autoscaler
-subjects:
-  - kind: ServiceAccount
-    name: cluster-autoscaler
-    namespace: kube-system
+resource "kubernetes_cluster_role" "cluster_autoscaler" {
+  metadata {
+    name = "cluster-autoscaler"
+    labels = {
+      k8s-addon = "cluster-autoscaler.addons.k8s.io"
+      k8s-app = "cluster-autoscaler"
+    }
+  }
 
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: cluster-autoscaler
-  namespace: kube-system
-  labels:
-    k8s-addon: cluster-autoscaler.addons.k8s.io
-    k8s-app: cluster-autoscaler
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: cluster-autoscaler
-subjects:
-  - kind: ServiceAccount
-    name: cluster-autoscaler
-    namespace: kube-system
+  rule {
+    api_groups = [""]
+    resources  = ["events", "endpoints"]
+    verbs      = ["create", "patch"]
+  }
 
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: cluster-autoscaler
-  namespace: kube-system
-  labels:
-    app: cluster-autoscaler
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: cluster-autoscaler
-  template:
-    metadata:
-      labels:
-        app: cluster-autoscaler
-      annotations:
-        prometheus.io/scrape: 'true'
-        prometheus.io/port: '8085'
-    spec:
-      serviceAccountName: cluster-autoscaler
-      containers:
-        - image: k8s.gcr.io/cluster-autoscaler:v1.18.0
-          name: cluster-autoscaler
-          resources:
-            limits:
-              cpu: 100m
-              memory: 300Mi
-            requests:
-              cpu: 100m
-              memory: 300Mi
-          command:
-            - ./cluster-autoscaler
-            - --v=4
-            - --stderrthreshold=info
-            - --cloud-provider=aws
-            - --skip-nodes-with-local-storage=false
-            - --expander=least-waste
-            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/${var.cluster_name}
-          volumeMounts:
-            - name: ssl-certs
-              mountPath: /etc/ssl/certs/ca-certificates.crt
-              readOnly: true
-          imagePullPolicy: "Always"
-      volumes:
-        - name: ssl-certs
-          hostPath:
-            path: "/etc/ssl/certs/ca-bundle.crt"
-YAML
+  rule {
+    api_groups = [""]
+    resources  = ["pods/eviction"]
+    verbs      = ["create"]
+  }
+
+  rule {
+    api_groups = [""]
+    resources  = ["pods/status"]
+    verbs      = ["update"]
+  }
+
+  rule {
+    api_groups = [""]
+    resources  = ["endpoints"]
+    resource_names  = ["cluster-autoscaler"]
+    verbs      = ["get", "update"]
+  }
+
+  rule {
+    api_groups = [""]
+    resources  = ["nodes"]
+    verbs      = ["watch", "list", "get", "update"]
+  }
+
+  rule {
+    api_groups = [""]
+    resources  = ["pods", "services", "replicationcontrollers", "persistentvolumeclaims", "persistentvolumes"]
+    verbs      = ["watch", "list", "get"]
+  }
+
+  rule {
+    api_groups = ["extensions"]
+    resources  = ["replicasets", "daemonsets"]
+    verbs      = ["watch", "list", "get"]
+  }
+
+  rule {
+    api_groups = ["policy"]
+    resources  = ["poddisruptionbudgets"]
+    verbs      = ["watch", "list"]
+  }
+
+  rule {
+    api_groups = ["apps"]
+    resources  = ["statefulsets", "replicasets", "daemonsets"]
+    verbs      = ["watch", "list", "get"]
+  }
+
+  rule {
+    api_groups = ["storage.k8s.io"]
+    resources  = ["storageclasses", "csinodes"]
+    verbs      = ["watch", "list", "get"]
+  }
+
+  rule {
+    api_groups = ["batch", "extensions"]
+    resources  = ["jobs"]
+    verbs      = ["watch", "list", "get", "patch"]
+  }
+
+  rule {
+    api_groups = ["coordination.k8s.io"]
+    resources  = ["leases"]
+    verbs      = ["create"]
+  }
+
+  rule {
+    api_groups = ["coordination.k8s.io"]
+    resource_names  = ["cluster-autoscaler"]
+    resources  = ["leases"]
+    verbs      = ["get", "update"]
+  }
+}
+
+resource "kubernetes_role" "cluster_autoscaler" {
+  metadata {
+    name = "cluster-autoscaler"
+    namespace = "kube-system"
+    labels = {
+      k8s-addon = "cluster-autoscaler.addons.k8s.io"
+      k8s-app = "cluster-autoscaler"
+    }
+  }
+
+  rule {
+    api_groups = [""]
+    resources  = ["configmaps"]
+    verbs      = ["create", "list", "watch"]
+  }
+
+  rule {
+    api_groups = [""]
+    resources  = ["configmaps"]
+    resource_names  = ["cluster-autoscaler-status", "cluster-autoscaler-priority-expander"]
+    verbs      = ["delete", "get", "update", "watch"]
+  }
+}
+
+resource "kubernetes_cluster_role_binding" "auto_scaler" {
+  metadata {
+    name = "cluster-autoscaler"
+    labels = {
+      k8s-addon = "cluster-autoscaler.addons.k8s.io"
+      k8s-app = "cluster-autoscaler"
+    }
+  }
+
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "cluster-autoscaler"
+  }
+
+  subject {
+    kind      = "ServiceAccount"
+    name      = "cluster-autoscaler"
+    namespace = "kube-system"
+  }
+}
+
+resource "kubernetes_role_binding" "auto_scaler" {
+  metadata {
+    name = "cluster-autoscaler"
+    namespace = "kube-system"
+    labels = {
+      k8s-addon = "cluster-autoscaler.addons.k8s.io"
+      k8s-app = "cluster-autoscaler"
+    }
+  }
+
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "Role"
+    name      = "cluster-autoscaler"
+  }
+
+  subject {
+    kind      = "ServiceAccount"
+    name      = "cluster-autoscaler"
+    namespace = "kube-system"
+  }
+}
+
+resource "kubernetes_deployment" "cluster_autoscaler" {
+  metadata {
+    name = "cluster-autoscaler"
+    namespace = "kube-system"
+    labels = {
+      app = "cluster-autoscaler"
+    }
+  }
+
+  spec {
+    replicas = 1
+
+    selector {
+      match_labels = {
+        app = "cluster-autoscaler"
+      }
+    }
+
+    template {
+      metadata {
+        labels = {
+          app = "cluster-autoscaler"
+        }
+        annotations = {
+          "prometheus.io/scrape" = "true"
+          "prometheus.io/port" = "8085"
+        }
+      }
+
+      spec {
+        automount_service_account_token = true
+        service_account_name = "cluster-autoscaler"
+        container {
+          image = "k8s.gcr.io/cluster-autoscaler:v1.18.0"
+          image_pull_policy = "Always"
+          name  = "cluster-autoscaler"
+          command = [
+            "./cluster-autoscaler",
+            "--v=4",
+            "--stderrthreshold=info",
+            "--cloud-provider=aws",
+            "--skip-nodes-with-local-storage=false",
+            "--expander=least-waste",
+            "--node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/${var.cluster_name}"
+          ]
+          volume_mount {
+            name = "ssl-certs"
+            mount_path = "/etc/ssl/certs/ca-certificates.crt"
+            read_only = true
+          }
+
+          resources {
+            limits {
+              cpu    = "0.1"
+              memory = "300Mi"
+            }
+            requests {
+              cpu    = "0.1"
+              memory = "300Mi"
+            }
+          }
+        }
+
+        volume {
+          name = "ssl-certs"
+          host_path {
+            path = "/etc/ssl/certs/ca-bundle.crt"
+          }
+        }
+      }
+    }
+  }
 }
