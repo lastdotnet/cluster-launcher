@@ -7,7 +7,6 @@ Deploy a Kubernetes cluster in AWS using EKS service.
  * AWS IAM Authenticator
  * kubectl
  * wget (required for eks module)
- * Kubernetes Terraform provider
 
 ## Install requirements
 
@@ -98,19 +97,6 @@ Use the package manager [Chocolatey](https://chocolatey.org/) to install wget.
 choco install wget
 ```
 
-### Kubernetes Terraform provider
-
-Use the command below to install Kubernetes Terraform provider,
-if the command is outdated or failing, please refer to the [documentation here](https://gavinbunney.github.io/terraform-provider-kubectl/docs/provider.html).
-
-```bash
-mkdir -p ~/.terraform.d/plugins && \
-    curl -Ls https://api.github.com/repos/gavinbunney/terraform-provider-kubectl/releases/latest \
-    | jq -r ".assets[] | select(.browser_download_url | contains(\"$(uname -s | tr A-Z a-z)\")) | select(.browser_download_url | contains(\"amd64\")) | .browser_download_url" \
-    | xargs -n 1 curl -Lo ~/.terraform.d/plugins/terraform-provider-kubectl && \
-    chmod +x ~/.terraform.d/plugins/terraform-provider-kubectl
-```
-
 
 ## Deploy Kubernetes Cluster
 
@@ -166,7 +152,7 @@ Enable backups:
 make aws-backups
 ```
 
-Disable backups: 
+Disable backups:
 
 ```bash
 make aws-destroy-backups
