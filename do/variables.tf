@@ -21,7 +21,7 @@ variable "cluster_name" {
 
 variable "tags" {
   description = "Cluster tags"
-  default     = ["Terraform","THORNode"]
+  default     = ["Terraform", "THORNode"]
 }
 
 variable "node_group_settings" {

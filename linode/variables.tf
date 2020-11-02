@@ -21,7 +21,7 @@ variable "cluster_label" {
 
 variable "tags" {
   description = "Cluster tags"
-  default     = ["Terraform","THORNode"]
+  default     = ["Terraform", "THORNode"]
 }
 
 variable "pool_settings" {
