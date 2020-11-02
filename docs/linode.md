@@ -102,8 +102,7 @@ jq -r ".resources[].instances[].attributes.kubeconfig" linode/terraform.tfstate 
 linode-cli lke kubeconfig-view <use_your_cluster_id> > ~/.kube/config-linode
 
 # Merge it and set current context
-KUBECONFIG=~/.kube/config:~/.kube/config-linode kubectl config view --flatten > ~/.kube/tmpcfg && mv -f ~/.kube/tmpcfg ~/.kube/config
-kubectl config use-context lke<use_your_cluster_id>-admin
+KUBECONFIG=~/.kube/config:~/.kube/config-linode kubectl config view --flatten > ~/.kube/tmpcfg && mv -f ~/.kube/tmpcfg ~/.kube/config && kubectl config use-context $(kubectl config current-context --kubeconfig=~/.kube/config-linode)
 
 # Or just view it - method #1
 jq -r ".resources[].instances[].attributes.kubeconfig" linode/terraform.tfstate | base64 -D
