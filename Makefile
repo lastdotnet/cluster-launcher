@@ -17,4 +17,10 @@ do:
 destroy-do:
 	cd do && terraform destroy
 
-.PHONY: aws destroy-aws do destroy-do
+linode:
+	cd linode && terraform init && terraform apply
+
+destroy-linode:
+	cd linode && terraform destroy
+
+.PHONY: aws destroy-aws do destroy-do linode destroy-linode

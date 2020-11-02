@@ -39,3 +39,4 @@ Install the terraform CLI, goto [https://www.terraform.io](https://www.terraform
 
   * AWS [documentation here](docs/aws.md)
   * Digital Ocean [documentation here](docs/do.md)
+  * Linode [documentation here](docs/linode.md)
