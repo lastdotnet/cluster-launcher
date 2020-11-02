@@ -96,9 +96,14 @@ To configure authentication from the command line, use the following command, su
 
 ```bash
 # Store it - method #1
-jq -r ".resources[].instances[].attributes.kubeconfig" linode/terraform.tfstate | base64 -D > ~/.kube/config
+jq -r ".resources[].instances[].attributes.kubeconfig" linode/terraform.tfstate | base64 -D > ~/.kube/config-linode
+
 # Store it - method #2
-linode-cli lke kubeconfig-view <use_your_cluster_id> > ~/.kube/config
+linode-cli lke kubeconfig-view <use_your_cluster_id> > ~/.kube/config-linode
+
+# Merge it and set current context
+KUBECONFIG=~/.kube/config:~/.kube/config-linode kubectl config view --flatten > ~/.kube/tmpcfg && mv -f ~/.kube/tmpcfg ~/.kube/config
+kubectl config use-context lke<use_your_cluster_id>-admin
 
 # Or just view it - method #1
 jq -r ".resources[].instances[].attributes.kubeconfig" linode/terraform.tfstate | base64 -D
