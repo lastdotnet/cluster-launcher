@@ -1,4 +1,4 @@
-provider "digitalocean" {
+provider "linode" {
   token = var.token
 }
 
@@ -6,9 +6,9 @@ terraform {
   required_version = ">= 0.13"
 
   required_providers {
-    digitalocean = {
-      source  = "digitalocean/digitalocean"
-      version = ">= 1.22.2"
+    linode = {
+      source  = "linode/linode"
+      version = ">= 1.13.3"
     }
     local = {
       source  = "hashicorp/local"
