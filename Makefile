@@ -11,6 +11,12 @@ destroy-aws:
 destroy-aws-backups:
 	cd aws/backups && terraform destroy
 
+azure:
+	cd azure && terraform init && terraform apply
+
+destroy-azure:
+	cd azure && terraform destroy
+
 do:
 	cd do && terraform init && terraform apply
 
@@ -23,4 +29,4 @@ linode:
 destroy-linode:
 	cd linode && terraform destroy
 
-.PHONY: aws destroy-aws do destroy-do linode destroy-linode
+.PHONY: aws destroy-aws azure destroy-azure do destroy-do linode destroy-linode
