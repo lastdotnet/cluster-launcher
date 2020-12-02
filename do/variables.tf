@@ -21,6 +21,7 @@ variable "cluster_name" {
 
 variable "tags" {
   description = "Cluster tags"
+  type        = list(string)
   default     = ["Terraform", "THORNode"]
 }
 
@@ -36,5 +37,6 @@ variable "node_group_settings" {
 
 variable "kubeconfig_path" {
   description = "Kuubeconfig file path"
+  type        = string
   default     = "~/.kube/config-do"
 }

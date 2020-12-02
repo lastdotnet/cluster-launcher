@@ -5,6 +5,7 @@ variable "region" {
 
 variable "az" {
   description = "AWS availability zones"
+  type        = list(string)
   default = ["a", "b", "c"]
 }
 
