@@ -1,5 +1,6 @@
 variable "name" {
   description = "The base name used for all resources"
+  type        = string
 }
 
 variable "location" {
@@ -21,6 +22,7 @@ variable "node_pool_settings" {
 
 variable "availability_zones" {
   description = "Azure availability zones"
+  type        = list(number)
   default     = [1, 2, 3]
 }
 
