@@ -6,7 +6,7 @@ variable "region" {
 variable "az" {
   description = "AWS availability zones"
   type        = list(string)
-  default = ["a", "b", "c"]
+  default     = ["a", "b", "c"]
 }
 
 variable "vpc_cidr" {
@@ -29,7 +29,7 @@ variable "cluster_name" {
 variable "tags" {
   description = "Tags"
   type        = map(string)
-  default     = {
+  default = {
     Terraform = true
     THORNode  = true
   }

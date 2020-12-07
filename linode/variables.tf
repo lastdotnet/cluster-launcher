@@ -28,9 +28,9 @@ variable "tags" {
 variable "pool_settings" {
   description = "Cluster pool settings"
   type        = map(string)
-  default     = {
+  default = {
     # Run this to get an overview of all instance types: `linode-cli linodes types`
-    count            = 3
-    instance_type    = "g6-standard-8"  #  Linode 32GB with 8 CPU
+    count         = 3
+    instance_type = "g6-standard-8" #  Linode 32GB with 8 CPU
   }
 }
