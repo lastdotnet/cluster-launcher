@@ -29,4 +29,4 @@ linode:
 destroy-linode:
 	cd linode && terraform destroy
 
-.PHONY: aws destroy-aws azure destroy-azure do destroy-do linode destroy-linode
+.PHONY: aws aws-backups destroy-aws destroy-aws-backups azure destroy-azure do destroy-do linode destroy-linode
