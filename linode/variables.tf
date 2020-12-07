@@ -21,6 +21,7 @@ variable "cluster_label" {
 
 variable "tags" {
   description = "Cluster tags"
+  type        = list(string)
   default     = ["Terraform", "THORNode"]
 }
 
