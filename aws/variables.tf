@@ -42,7 +42,7 @@ variable "node_group_settings" {
     desired_capacity = 3
     max_capacity     = 10
     min_capacity     = 1
-    instance_type    = "m5.2xlarge"
+    instance_type    = "m5.2xlarge" # 8CPU/32GB
     disk_size        = 100
   }
 }
