@@ -23,10 +23,16 @@ do:
 destroy-do:
 	cd do && terraform destroy
 
+gcp:
+	cd gcp && terraform init && terraform apply
+
+destroy-gcp:
+	cd gcp && terraform destroy
+
 linode:
 	cd linode && terraform init && terraform apply
 
 destroy-linode:
 	cd linode && terraform destroy
 
-.PHONY: aws aws-backups destroy-aws destroy-aws-backups azure destroy-azure do destroy-do linode destroy-linode
+.PHONY: aws aws-backups destroy-aws destroy-aws-backups azure destroy-azure do destroy-do gcp destroy-gcp linode destroy-linode
