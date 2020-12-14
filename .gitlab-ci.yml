@@ -1,0 +1,34 @@
+image:
+  name: hashicorp/terraform:light
+  entrypoint:
+    - /usr/bin/env
+    - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+before_script:
+  - terraform version
+
+stages:
+  - validate
+
+.validation-script: &validation-script
+  - cd $CI_PROJECT_DIR/$CI_JOB_NAME && terraform init && terraform validate && terraform fmt -check=true
+
+aws:
+  stage: validate
+  script: *validation-script
+
+azure:
+  stage: validate
+  script: *validation-script
+
+do:
+  stage: validate
+  script: *validation-script
+
+gcp:
+  stage: validate
+  script: *validation-script
+
+linode:
+  stage: validate
+  script: *validation-script
