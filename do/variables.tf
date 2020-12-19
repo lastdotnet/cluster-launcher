@@ -8,14 +8,14 @@ variable "region" {
   type        = string
 }
 
-variable "cluster_version" {
+variable "kubernetes_version" {
   description = "DigitalOcean Kubernetes cluster version"
   type        = string
   default     = "1.18.10-do.2"
 }
 
-variable "cluster_name" {
-  description = "DigitalOcean Kubernetes cluster name"
+variable "name" {
+  description = "The base name used for all resources"
   type        = string
 }
 
