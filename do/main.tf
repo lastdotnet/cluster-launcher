@@ -8,8 +8,13 @@ resource "digitalocean_kubernetes_cluster" "cluster" {
     name       = "${var.cluster_name}-pool"
     auto_scale = true
     size       = var.node_group_settings["instance_type"]
+    node_count = var.node_group_settings["desired_capacity"]
     min_nodes  = var.node_group_settings["min_capacity"]
     max_nodes  = var.node_group_settings["max_capacity"]
+  }
+
+  lifecycle {
+    ignore_changes = [node_pool.0.node_count]
   }
 }
 
