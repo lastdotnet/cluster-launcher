@@ -11,7 +11,32 @@ module "eks" {
   }
 
   node_groups = {
-    main = {
+    "main-0" = {
+      subnets          = [module.vpc.public_subnets[0]]
+      desired_capacity = var.node_group_settings["desired_capacity"]
+      max_capacity     = var.node_group_settings["max_capacity"]
+      min_capacity     = var.node_group_settings["min_capacity"]
+      instance_type    = var.node_group_settings["instance_type"]
+
+      k8s_labels = {
+        Environment = "${var.cluster_name}-${var.region}"
+      }
+      additional_tags = var.tags
+    }
+    "main-1" = {
+      subnets          = [module.vpc.public_subnets[1]]
+      desired_capacity = var.node_group_settings["desired_capacity"]
+      max_capacity     = var.node_group_settings["max_capacity"]
+      min_capacity     = var.node_group_settings["min_capacity"]
+      instance_type    = var.node_group_settings["instance_type"]
+
+      k8s_labels = {
+        Environment = "${var.cluster_name}-${var.region}"
+      }
+      additional_tags = var.tags
+    }
+    "main-2" = {
+      subnets          = [module.vpc.public_subnets[2]]
       desired_capacity = var.node_group_settings["desired_capacity"]
       max_capacity     = var.node_group_settings["max_capacity"]
       min_capacity     = var.node_group_settings["min_capacity"]
