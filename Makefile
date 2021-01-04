@@ -29,10 +29,16 @@ gcp:
 destroy-gcp:
 	cd gcp && terraform destroy
 
+hcloud:
+	cd hcloud && terraform init && terraform apply && cd ansible && make provision
+
+destroy-hcloud:
+	cd hcloud && terraform destroy
+
 linode:
 	cd linode && terraform init && terraform apply
 
 destroy-linode:
 	cd linode && terraform destroy
 
-.PHONY: aws aws-backups destroy-aws destroy-aws-backups azure destroy-azure do destroy-do gcp destroy-gcp linode destroy-linode
+.PHONY: aws aws-backups destroy-aws destroy-aws-backups azure destroy-azure do destroy-do gcp destroy-gcp hcloud destroy-hcloud linode destroy-linode

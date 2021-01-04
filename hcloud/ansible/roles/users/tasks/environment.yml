@@ -1,0 +1,8 @@
+- name: Aliases
+  lineinfile:
+    path: "/home/{{ ansible_ssh_user }}/.bashrc"
+    line: "alias {{ item }}"
+  with_items:
+    - c=clear
+    - mon="watch -n 1 "
+    - k=kubectl

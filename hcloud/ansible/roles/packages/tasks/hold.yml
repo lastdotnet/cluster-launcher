@@ -1,0 +1,12 @@
+- name: Hold package versions
+  become: true
+  dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  with_items:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - kubelet
+    - kubeadm
+    - kubectl

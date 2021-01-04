@@ -1,0 +1,6 @@
+- hosts: all
+  become: true
+  strategy: linear
+  name: Prepare the nodes
+  roles:
+    - initialize

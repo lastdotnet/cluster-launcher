@@ -29,6 +29,10 @@ gcp:
   stage: validate
   script: *validation-script
 
+hcloud:
+  stage: validate
+  script: *validation-script
+
 linode:
   stage: validate
   script: *validation-script

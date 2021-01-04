@@ -1,0 +1,4 @@
+- name: Wait for cloud-init script to complete
+  wait_for:
+    path: "/home/{{ ansible_ssh_user }}/cloud-init-has-finished"
+    state: present
