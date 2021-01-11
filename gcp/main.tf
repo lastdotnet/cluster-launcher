@@ -1,6 +1,6 @@
 resource "google_container_cluster" "cluster" {
   name     = "${var.project_id}-cluster"
-  location = var.zone
+  location = var.location
 
   remove_default_node_pool = true
   initial_node_count       = var.nodes.desired_capacity

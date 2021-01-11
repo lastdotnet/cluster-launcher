@@ -3,8 +3,8 @@ variable "project_id" {
   type        = string
 }
 
-variable "zone" {
-  description = "GCP zone in region"
+variable "location" {
+  description = "The location (region or zone) in which the cluster master will be created, as well as the default node location. If you specify a zone (such as us-central1-a), the cluster will be a zonal cluster with a single cluster master. If you specify a region (such as us-west1), the cluster will be a regional cluster with multiple masters spread across zones in the region, and with default node locations in those zones as well."
   type        = string
 }
 
@@ -21,7 +21,7 @@ variable "network" {
 variable "kubernetes_version" {
   description = "GKE kubernetes version"
   type        = string
-  default     = "1.17.14-gke.1200"
+  default     = "1.17.14-gke.1600"
 }
 
 variable "nodes" {
@@ -31,10 +31,10 @@ variable "nodes" {
     preemptible      = false
     machine_type     = "n2d-standard-8" # 8CPU/32GB
     min_capacity     = 1
-    max_capacity     = 10
+    max_capacity     = 4
     desired_capacity = 3
     disk_size        = 100
-    disk_type        = "pd-standard"
+    disk_type        = "pd-ssd"
   }
 }
 
@@ -45,5 +45,6 @@ variable "tags" {
 }
 
 locals {
-  region = regex("(.*)(..$)", var.zone)[0]
+  is_zonal = length(regexall("-", var.location)) == 2
+  region   = local.is_zonal ? regex("(.*)(..$)", var.location)[0] : var.location
 }
