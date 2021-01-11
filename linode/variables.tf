@@ -14,6 +14,12 @@ variable "cluster_version" {
   default     = "1.18"
 }
 
+variable "kubeconfig_path" {
+  description = "Kubeconfig file path"
+  type        = string
+  default     = "~/.kube/config-linode"
+}
+
 variable "cluster_label" {
   description = "Linode Kubernetes cluster label"
   type        = string
