@@ -11,7 +11,7 @@ variable "region" {
 variable "kubernetes_version" {
   description = "DigitalOcean Kubernetes cluster version"
   type        = string
-  default     = "1.18.10-do.2"
+  default     = "1.18.10-do.3"
 }
 
 variable "name" {
