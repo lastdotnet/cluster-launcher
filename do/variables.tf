@@ -29,7 +29,7 @@ variable "node_group_settings" {
   description = "Cluster node group settings"
   type        = map(string)
   default = {
-    desired_capacity = 2
+    desired_capacity = 1
     min_capacity     = 1
     max_capacity     = 10
     instance_type    = "g-8vcpu-32gb"
