@@ -1,17 +1,18 @@
+# THORChain Kubernetes Cluster – Google Cloud Platform
+
 Deploy a Kubernetes cluster in GCP using GKE service.
 
 ## Requirements
- * a GCP account
- * CLI and GCP credentials configured
- * kubectl
+
+* a GCP account
+* CLI and GCP credentials configured
+* kubectl
 
 ## Install requirements
 
 ### gcloud CLI
 
-In order for Terraform to run operations on your behalf, you must install and configure the gcloud CLI tool.
-To install the gcloud CLI, follow the [installation guide] for your system (https://cloud.google.com/sdk/docs/install)
-or choose a package manager based on your operating system.
+In order for Terraform to run operations on your behalf, you must install and configure the gcloud CLI tool. To install the gcloud CLI, follow the [installation guide](https://cloud.google.com/sdk/docs/install) for your system or choose a package manager based on your operating system.
 
 MacOS:
 
@@ -40,8 +41,7 @@ gcloud services enable container.googleapis.com
 
 ### kubectl
 
-To install the kubectl (Kubernetes CLI), follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-or choose a package manager based on your operating system.
+To install the kubectl (Kubernetes CLI), follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/) or choose a package manager based on your operating system.
 
 MacOS:
 
@@ -78,9 +78,15 @@ terraform plan # to see the plan
 terraform apply
 ```
 
-### vCPU quotas
+### Quotas
 
-If necessary increase your quota for the vm's in the regions you want to use. You might need to get in touch with the sales team for further assistance.
+It may be necessary to increase your quota for various resources in the regions you want to use. You might need to get in touch with the sales team for further assistance.
+
+### Cluster Location
+
+You can choose between a resilient **regional cluster** that spreads across multiple zones of a region having a control plane in each or a **zonal cluster** that resides in a single zone but also only has a single control plane.
+
+Enter either the name of the region like `us-east1` or the name of the zone like `us-east1-a`.
 
 ## Configure kubectl
 
@@ -88,7 +94,7 @@ Now that you've provisioned your GKE cluster, you need to configure kubectl.
 Customize the following command with your cluster name and resource group. It will get the access credentials for your cluster and automatically configure kubectl.
 
 ```bash
-gcloud container clusters get-credentials $(terraform output cluster_name) --zone $(terraform output zone)
+gcloud container clusters get-credentials $(terraform output -raw cluster_name) --region $(terraform output -raw location)
 kubectl version
 ```
 
