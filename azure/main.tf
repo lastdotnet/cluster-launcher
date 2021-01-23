@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "rg" {
   name     = "${var.name}-resources"
-  location = var.location
+  location = local.region
 }
 
 resource "azurerm_kubernetes_cluster" "cluster" {
@@ -20,16 +20,16 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     name                = "default"
     type                = "VirtualMachineScaleSets"
     enable_auto_scaling = true
-    node_count          = var.node_pool_settings.desired_capacity
-    max_count           = var.node_pool_settings.max_capacity
-    min_count           = var.node_pool_settings.min_capacity
+    node_count          = var.node_pool_settings.desired_capacity * local.measure
+    max_count           = var.node_pool_settings.max_capacity * local.measure
+    min_count           = var.node_pool_settings.min_capacity * local.measure
     vm_size             = var.node_pool_settings.instance_type
     os_disk_size_gb     = var.node_pool_settings.disk_size
-    availability_zones  = var.availability_zones
+    availability_zones  = local.availability_zones
     tags                = var.tags
 
     node_labels = {
-      Environment = "${var.name}-${var.location}"
+      Environment = "${var.name}-${local.region}"
     }
   }
 
