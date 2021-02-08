@@ -1,0 +1,15 @@
+- hosts: all
+  strategy: linear
+  name: Post k8s node management
+  tasks:
+    - name: Hold docker and kubernetes versions
+      include_role: name=packages tasks_from=hold
+  roles:
+    - users
+
+- hosts: kube-master
+  strategy: linear
+  name: Post k8s control plane provisioning
+  tasks:
+    - name: "Manage kubeconfig for {{ ansible_ssh_user }}"
+      include_role: name=users tasks_from=kubeconfig

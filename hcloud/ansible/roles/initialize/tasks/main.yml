@@ -1,0 +1,3 @@
+- include: ready.yml
+- include: hardening.yml
+- include: dependencies.yml

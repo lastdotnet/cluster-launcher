@@ -1,0 +1,2 @@
+- name: Harden SSH
+  include_role: name=devsec.hardening.ssh_hardening
