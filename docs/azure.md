@@ -78,11 +78,15 @@ If necessary, request a standard quota increase for the vm's in the regions you 
 
 ## Configure kubectl
 
-Now that you've provisioned your AKS cluster, you need to configure kubectl.
-Customize the following command with your cluster name and resource group. It will get the access credentials for your cluster and automatically configure kubectl.
+Now that you've provisioned your AKS cluster, you need to configure kubectl. To configure authentication from the command line, use the following command. It will get the access credentials for your cluster and automatically configure kubectl.
 
 ```bash
-az aks get-credentials -a -g <resource_group> -n <cluster_name>
+(cd azure && az aks get-credentials -a -g $(terraform output -raw resource_group) -n $(terraform output -raw cluster_name))
+```
+
+Once done, you can check your cluster is responding correctly by running the command:
+
+```bash
 kubectl version
 ```
 

@@ -15,7 +15,7 @@ variable "node_pool_settings" {
     desired_capacity = 3
     max_capacity     = 10
     min_capacity     = 1
-    instance_type    = "Standard_D8_v4" # 8CPU/32GB
+    instance_type    = "Standard_D8as_v4" # 8CPU/32GB
     disk_size        = 100
   }
 }
@@ -29,7 +29,7 @@ variable "availability_zones" {
 variable "kubernetes_version" {
   description = "Version of Kubernetes specified when creating the AKS managed cluster"
   type        = string
-  default     = "1.18.10"
+  default     = "1.18.14"
 }
 
 variable "tags" {
