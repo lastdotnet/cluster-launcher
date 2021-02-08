@@ -16,7 +16,7 @@ module "eks" {
       desired_capacity = var.node_group_settings["desired_capacity"]
       max_capacity     = var.node_group_settings["max_capacity"]
       min_capacity     = var.node_group_settings["min_capacity"]
-      instance_type    = var.node_group_settings["instance_type"]
+      instance_types   = var.node_group_settings["instance_types"]
 
       k8s_labels = {
         Environment = "${var.cluster_name}-${var.region}"
@@ -28,7 +28,7 @@ module "eks" {
       desired_capacity = var.node_group_settings["desired_capacity"]
       max_capacity     = var.node_group_settings["max_capacity"]
       min_capacity     = var.node_group_settings["min_capacity"]
-      instance_type    = var.node_group_settings["instance_type"]
+      instance_types   = var.node_group_settings["instance_types"]
 
       k8s_labels = {
         Environment = "${var.cluster_name}-${var.region}"
@@ -40,7 +40,7 @@ module "eks" {
       desired_capacity = var.node_group_settings["desired_capacity"]
       max_capacity     = var.node_group_settings["max_capacity"]
       min_capacity     = var.node_group_settings["min_capacity"]
-      instance_type    = var.node_group_settings["instance_type"]
+      instance_types   = var.node_group_settings["instance_types"]
 
       k8s_labels = {
         Environment = "${var.cluster_name}-${var.region}"

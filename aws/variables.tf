@@ -37,12 +37,18 @@ variable "tags" {
 
 variable "node_group_settings" {
   description = "Cluster node group settings"
-  type        = map(string)
+  type = object({
+    desired_capacity = number
+    max_capacity     = number
+    min_capacity     = number
+    instance_types   = list(string)
+    disk_size        = number
+  })
   default = {
     desired_capacity = 1
     max_capacity     = 4
     min_capacity     = 1
-    instance_type    = "m5.2xlarge" # 8CPU/32GB
+    instance_types   = ["m5.2xlarge"] # 8CPU/32GB
     disk_size        = 100
   }
 }
