@@ -1,18 +1,18 @@
+# THORChain Kubernetes Cluster – Microsoft Azure
+
 Deploy a Kubernetes cluster in Azure using AKS service.
 
-
 ## Requirements
- * an Azure account
- * CLI and Azure credentials configured
- * kubectl
+
+* an Azure account
+* CLI and Azure credentials configured
+* kubectl
 
 ## Install requirements
 
 ### Azure CLI
 
-In order for Terraform to run operations on your behalf, you must install and configure the Azure CLI tool.
-To install the Azure CLI, follow the [installation guide] for your system (https://docs.microsoft.com/en-us/cli/azure/)
-or choose a package manager based on your operating system.
+In order for Terraform to run operations on your behalf, you must install and configure the Azure CLI tool. To install the Azure CLI, follow the [installation guide](https://docs.microsoft.com/en-us/cli/azure/) for your system or choose a package manager based on your operating system.
 
 MacOS:
 
@@ -34,8 +34,7 @@ az login
 
 ### kubectl
 
-To install the kubectl (Kubernetes CLI), follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-or choose a package manager based on your operating system.
+To install the kubectl (Kubernetes CLI), follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/) or choose a package manager based on your operating system.
 
 MacOS:
 
@@ -72,9 +71,15 @@ terraform plan # to see the plan
 terraform apply
 ```
 
-### vCPU quotas
+### Quotas
 
 If necessary, request a standard quota increase for the vm's in the regions you want to use.
+
+### Cluster Location
+
+You can choose between a resilient **regional cluster** that spreads across multiple zones of a region or a **zonal cluster** that resides in a single zone.
+
+Enter either the name of the region like `westus` or the name of the zone like `centralus-1`.
 
 ## Configure kubectl
 

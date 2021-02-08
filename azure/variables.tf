@@ -4,7 +4,7 @@ variable "name" {
 }
 
 variable "location" {
-  description = "The location where the Managed Kubernetes Cluster should be created"
+  description = "The location (region or zone) in which the cluster will be created. If you specify a zone (such as centralus-1), the cluster will be a zonal cluster. If you specify a region (such as westus), the cluster will be a regional cluster spread across zones in the region."
   type        = string
 }
 
@@ -13,15 +13,15 @@ variable "node_pool_settings" {
   type        = map(string)
   default = {
     desired_capacity = 3
-    max_capacity     = 10
+    max_capacity     = 4
     min_capacity     = 1
     instance_type    = "Standard_D8as_v4" # 8CPU/32GB
     disk_size        = 100
   }
 }
 
-variable "availability_zones" {
-  description = "Azure availability zones"
+variable "regional_availability_zones" {
+  description = "Availability zones when using regional clusters"
   type        = list(number)
   default     = [1, 2, 3]
 }
@@ -39,4 +39,11 @@ variable "tags" {
     Terraform = true
     THORNode  = true
   }
+}
+
+locals {
+  is_zonal           = length(regexall("-", var.location)) == 1
+  region             = local.is_zonal ? regex("(.*)(..$)", var.location)[0] : var.location
+  availability_zones = local.is_zonal ? list(regex("(.*)(.$)", var.location)[1]) : var.regional_availability_zones
+  measure            = length(local.availability_zones)
 }
