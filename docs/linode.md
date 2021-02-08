@@ -92,25 +92,14 @@ terraform apply
 
 Now that you've provisioned your Kubernetes cluster, you need to configure kubectl.
 
-To configure authentication from the command line, use the following command, substituting the ID of your cluster.
+To configure authentication from the command line, use the following command.
 
 ```bash
-# Store it - method #1
-jq -r ".resources[].instances[].attributes.kubeconfig" linode/terraform.tfstate | base64 -D > ~/.kube/config-linode
-
-# Store it - method #2
-linode-cli lke kubeconfig-view <use_your_cluster_id> > ~/.kube/config-linode
-
 # Merge it and set current context
-KUBECONFIG=~/.kube/config:~/.kube/config-linode kubectl config view --flatten > ~/.kube/tmpcfg && mv -f ~/.kube/tmpcfg ~/.kube/config && kubectl config use-context $(kubectl config current-context --kubeconfig=~/.kube/config-linode)
-
-# Or just view it - method #1
-jq -r ".resources[].instances[].attributes.kubeconfig" linode/terraform.tfstate | base64 -D
-# Or just view it - method #2
-linode-cli lke kubeconfig-view <use_your_cluster_id>
+KUBECONFIG=~/.kube/config:~/.kube/config-linode kubectl config view --flatten > ~/.kube/tmpcfg && mv -f ~/.kube/tmpcfg ~/.kube/config && kubectl config use-context $(kubectl config current-context --kubeconfig=$HOME/.kube/config-linode)
 ```
 
-> Note: If the above `linode-cli` command is broken you can download the file from the web [dashboar](https://cloud.linode.com/kubernetes/clusters) for the respective cluster.
+> You can also download the file from the [web dashboard](https://cloud.linode.com/kubernetes/clusters).
 
 This replaces the existing configuration at ~/.kube/config.
 
@@ -119,6 +108,14 @@ Once done, you can check your cluster is responding correctly by running the com
 ```bash
 kubectl version
 kubectl get nodes
+```
+
+## metrics-server
+
+On LKE you also need to install a custom metrics-server that allows for `kubelet-insecure-tls`.
+
+```bash
+(cd linode && kubectl apply -f metrics-server.yml)
 ```
 
 ## Clean up your workspace

@@ -4,7 +4,11 @@ terraform {
   required_providers {
     linode = {
       source  = "linode/linode"
-      version = ">= 1.13.4"
+      version = ">= 1.13"
+    }
+    local = {
+      source  = "hashicorp/local"
+      version = ">= 2.0"
     }
   }
 }
