@@ -1,20 +1,20 @@
+# THORChain Kubernetes Cluster – Amazon Web Services
+
 Deploy a Kubernetes cluster in AWS using EKS service.
 
-
 ## Requirements
- * an AWS account
- * CLI and AWS credentials configured
- * AWS IAM Authenticator
- * kubectl
- * wget (required for eks module)
+
+* an AWS account
+* CLI and AWS credentials configured
+* AWS IAM Authenticator
+* kubectl
+* wget (required for eks module)
 
 ## Install requirements
 
 ### AWS CLI
 
-In order for Terraform to run operations on your behalf, you must install and configure the AWS CLI tool.
-To install the AWS CLI, follow [these instructions](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html)
-or choose a package manager based on your operating system.
+In order for Terraform to run operations on your behalf, you must install and configure the AWS CLI tool. To install the AWS CLI, follow [these instructions](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html) or choose a package manager based on your operating system.
 
 MacOS:
 
@@ -39,7 +39,6 @@ aws configure
 To install the AWS IAM Authenticator, follow [these instructions](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
 or choose a package manager based on your operating system.
 
-
 MacOS:
 
 Use the package manager [homebrew](https://formulae.brew.sh/) to install the AWS IAM Authenticator.
@@ -58,8 +57,7 @@ choco install aws-iam-authenticator
 
 ### kubectl
 
-To install the kubectl (Kubernetes CLI), follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-or choose a package manager based on your operating system.
+To install the kubectl (Kubernetes CLI), follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/) or choose a package manager based on your operating system.
 
 MacOS:
 
@@ -97,7 +95,6 @@ Use the package manager [Chocolatey](https://chocolatey.org/) to install wget.
 choco install wget
 ```
 
-
 ## Deploy Kubernetes Cluster
 
 Use the commands below to deploy an AWS EKS cluster.
@@ -119,11 +116,10 @@ terraform apply
 
 ## Configure kubectl
 
-Now that you've provisioned your EKS cluster, you need to configure kubectl.
-Customize the following command with your cluster name and region. It will get the access credentials for your cluster and automatically configure kubectl.
+Now that you've provisioned your EKS cluster, you need to configure kubectl. Customize the following command with your cluster name and region. It will get the access credentials for your cluster and automatically configure kubectl.
 
 ```bash
-aws eks --region <cluster_region> update-kubeconfig --name <cluster_name>
+(cd aws && aws eks --region $(terraform output -raw region) update-kubeconfig --name $(terraform output -raw cluster_name))
 kubectl version
 ```
 
