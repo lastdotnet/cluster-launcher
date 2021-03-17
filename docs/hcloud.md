@@ -1,3 +1,5 @@
+# THORChain Kubernetes Cluster – Hetzner Cloud
+
 Deploy an **umnanaged** Kubernetes cluster in hcloud.
 
 > Note: This approach is only recommended for experienced operators because the kubernetes control plane among other things needs to be managed manually.
@@ -13,9 +15,7 @@ Deploy an **umnanaged** Kubernetes cluster in hcloud.
 
 ### hcloud CLI
 
-In order for Terraform to run operations on your behalf, you must install and configure the hcloud CLI tool.
-To install the hcloud CLI, follow the [installation guide](https://github.com/hetznercloud/cli#installation) for your system
-or choose a package manager based on your operating system.
+In order for Terraform to run operations on your behalf, you must install and configure the hcloud CLI tool. To install the hcloud CLI, follow the [installation guide](https://github.com/hetznercloud/cli#installation) for your system or choose a package manager based on your operating system.
 
 MacOS:
 
@@ -37,8 +37,7 @@ hcloud context create <project_name>
 
 ### kubectl
 
-To install the kubectl (Kubernetes CLI), follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-or choose a package manager based on your operating system.
+To install the kubectl (Kubernetes CLI), follow [these instructions](https://kubernetes.io/docs/tasks/tools/install-kubectl/) or choose a package manager based on your operating system.
 
 MacOS:
 

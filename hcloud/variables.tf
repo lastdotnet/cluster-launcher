@@ -58,11 +58,10 @@ variable "nodes" {
 }
 
 variable "versions" {
-  description = "Package versions"
+  description = "Software versions"
   type        = map(string)
   default = {
-    kubernetes = "1.18.10"
-    docker     = "19.03"
+    kubernetes = "1.18.15"
   }
 }
 

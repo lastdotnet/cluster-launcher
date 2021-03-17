@@ -16,7 +16,6 @@ resource "local_file" "inventory" {
       "ansible_ssh_user: ${var.user_name}",
       "cluster_name: ${var.name}",
       "kube_version: v${var.versions.kubernetes}",
-      "docker_version: '${var.versions.docker}'",
       "kube_pods_subnet: ${var.network.pods}",
       "kube_service_addresses: ${var.network.services}",
       "apiserver_loadbalancer_domain_name: ${hcloud_load_balancer.lb.ipv4}",
