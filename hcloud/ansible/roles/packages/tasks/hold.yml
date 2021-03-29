@@ -4,9 +4,4 @@
     name: "{{ item }}"
     selection: hold
   with_items:
-    - docker-ce
-    - docker-ce-cli
     - containerd.io
-    - kubelet
-    - kubeadm
-    - kubectl

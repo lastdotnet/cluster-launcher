@@ -8,4 +8,4 @@
   become: true
   pip:
     name:
-      - openshift
+      - openshift==0.11

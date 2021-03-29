@@ -2,7 +2,7 @@
   strategy: linear
   name: Post k8s node management
   tasks:
-    - name: Hold docker and kubernetes versions
+    - name: Hold package versions
       include_role: name=packages tasks_from=hold
   roles:
     - users
