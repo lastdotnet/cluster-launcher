@@ -95,27 +95,31 @@ Now that you've provisioned your Kubernetes cluster, you need to configure kubec
 To configure authentication from the command line, use the following command.
 
 ```bash
-# Merge it and set current context
-KUBECONFIG=~/.kube/config:~/.kube/config-linode kubectl config view --flatten > ~/.kube/tmpcfg && mv -f ~/.kube/tmpcfg ~/.kube/config && kubectl config use-context $(kubectl config current-context --kubeconfig=$HOME/.kube/config-linode)
+make kubeconfig-linode
+```
+
+Or get your kubeconfig file manually:
+
+```bash
+KUBECONFIG="$HOME/.kube/config:$HOME/.kube/config-linode" kubectl config view --flatten > "$HOME/.kube/tmpcfg" && mv -f "$HOME/.kube/tmpcfg" "$HOME/.kube/config" && kubectl config use-context $(kubectl config current-context --kubeconfig="$HOME/.kube/config-linode")
 ```
 
 > You can also download the file from the [web dashboard](https://cloud.linode.com/kubernetes/clusters).
 
-This replaces the existing configuration at ~/.kube/config.
-
-Once done, you can check your cluster is responding correctly by running the command:
+Once done, you can check your cluster is responding correctly by running the commands:
 
 ```bash
 kubectl version
+kubectl cluster-info
 kubectl get nodes
 ```
 
 ## metrics-server
 
-On LKE you also need to install a custom metrics-server that allows for `kubelet-insecure-tls`.
+VERY IMPORTANT: On LKE you also need to install a custom metrics-server that allows for `kubelet-insecure-tls`.
 
 ```bash
-(cd linode && kubectl apply -f metrics-server.yml)
+make linode-post # (cd linode && kubectl apply -f metrics-server.yml)
 ```
 
 ## Clean up your workspace

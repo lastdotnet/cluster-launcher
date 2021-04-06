@@ -94,8 +94,21 @@ Now that you've provisioned your GKE cluster, you need to configure kubectl.
 Customize the following command with your cluster name and resource group. It will get the access credentials for your cluster and automatically configure kubectl.
 
 ```bash
-gcloud container clusters get-credentials $(terraform output -raw cluster_name) --region $(terraform output -raw location)
+make kubeconfig-gcp
+```
+
+Or get your kubeconfig file manually:
+
+```bash
+(cd gcp && gcloud container clusters get-credentials $(terraform output -raw cluster_name) --region $(terraform output -raw location))
+```
+
+Once done, you can check your cluster is responding correctly by running the commands:
+
+```bash
 kubectl version
+kubectl cluster-info
+kubectl get nodes
 ```
 
 ## Clean up your workspace
