@@ -47,7 +47,7 @@ variable "nodes" {
     }
     worker = {
       count       = 3
-      server_type = "ccx31" # 8CPU/32GB with dedicated CPU
+      server_type = "ccx32" # 8CPU/32GB with dedicated AMD EPYC CPU
     }
     common = {
       location = "nbg1" # See node-launcher service annotations (don't necessarily need to match)
