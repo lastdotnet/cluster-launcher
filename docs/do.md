@@ -122,7 +122,7 @@ kubectl version
 Or get your kubeconfig file manually:
 
 ```bash
-(cd do && az doctl kubernetes cluster kubeconfig save $(terraform output -raw cluster_name))
+(cd do && doctl kubernetes cluster kubeconfig save $(terraform output -raw cluster_name))
 ```
 
 Once done, you can check your cluster is responding correctly by running the commands:
