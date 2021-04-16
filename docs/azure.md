@@ -86,13 +86,21 @@ Enter either the name of the region like `westus` or the name of the zone like `
 Now that you've provisioned your AKS cluster, you need to configure kubectl. To configure authentication from the command line, use the following command. It will get the access credentials for your cluster and automatically configure kubectl.
 
 ```bash
+make kubeconfig-azure
+```
+
+Or get your kubeconfig file manually:
+
+```bash
 (cd azure && az aks get-credentials -a -g $(terraform output -raw resource_group) -n $(terraform output -raw cluster_name))
 ```
 
-Once done, you can check your cluster is responding correctly by running the command:
+Once done, you can check your cluster is responding correctly by running the commands:
 
 ```bash
 kubectl version
+kubectl cluster-info
+kubectl get nodes
 ```
 
 ## Clean up your workspace

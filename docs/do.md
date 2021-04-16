@@ -107,7 +107,7 @@ You can follow this [guide](https://www.digitalocean.com/docs/kubernetes/how-to/
 To configure authentication from the command line, use the following command, substituting the name of your cluster.
 
 ```bash
-doctl kubernetes cluster kubeconfig save <use_your_cluster_name>
+make kubeconfig-do
 ```
 
 This downloads the kubeconfig for the cluster, merges it with any existing configuration from ~/.kube/config,
@@ -117,6 +117,19 @@ Once done, you can check your cluster is responding correctly by running the com
 
 ```bash
 kubectl version
+```
+
+Or get your kubeconfig file manually:
+
+```bash
+(cd do && az doctl kubernetes cluster kubeconfig save $(terraform output -raw cluster_name))
+```
+
+Once done, you can check your cluster is responding correctly by running the commands:
+
+```bash
+kubectl version
+kubectl cluster-info
 kubectl get nodes
 ```
 

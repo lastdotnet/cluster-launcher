@@ -110,12 +110,22 @@ Now that you've provisioned your kubernetes cluster, you need to configure kubec
 The following command will get the access credentials for your cluster.
 
 ```bash
-(cd hcloud && scp $(terraform output -raw hcloud_config) ~/.kube/config-hcloud)
+make kubeconfig-hcloud
+```
 
-# Merge it and set current context
-KUBECONFIG=~/.kube/config:~/.kube/config-hcloud kubectl config view --flatten > ~/.kube/tmpcfg && mv -f ~/.kube/tmpcfg ~/.kube/config && kubectl config use-context $(kubectl config current-context --kubeconfig=$HOME/.kube/config-hcloud)
+Or get your kubeconfig file manually:
 
+```bash
+(cd hcloud && scp $(terraform output -raw hcloud_config) "$HOME/.kube/config-hcloud")
+KUBECONFIG="$HOME/.kube/config:$HOME/.kube/config-hcloud" kubectl config view --flatten > "$HOME/.kube/tmpcfg" && mv -f "$HOME/.kube/tmpcfg" "$HOME/.kube/config" && kubectl config use-context $(kubectl config current-context --kubeconfig="$HOME/.kube/config-hcloud")
+```
+
+Once done, you can check your cluster is responding correctly by running the commands:
+
+```bash
 kubectl version
+kubectl cluster-info
+kubectl get nodes
 ```
 
 ## Clean up your workspace
