@@ -19,7 +19,7 @@ apt:
   sources:
     kubernetes:
       source: "deb http://apt.kubernetes.io/ kubernetes-xenial main"
-      keyid: 54A647F9048D5688D7DA2ABE6A030B21BA07F4FB
+      keyid: 7F92E05B31093BEF5A3C2D38FEEA9169307EA071
 
 package_update: true
 package_upgrade: true
