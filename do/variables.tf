@@ -11,7 +11,7 @@ variable "region" {
 variable "kubernetes_version" {
   description = "DigitalOcean Kubernetes cluster version"
   type        = string
-  default     = "1.18.14-do.0"
+  default     = "1.19.6-do.0"
 }
 
 variable "name" {
@@ -29,8 +29,8 @@ variable "node_group_settings" {
   description = "Cluster node group settings"
   type        = map(string)
   default = {
-    desired_capacity = 1
-    min_capacity     = 1
+    desired_capacity = 2
+    min_capacity     = 2
     max_capacity     = 10
     instance_type    = "c-16" # 16CPU/32GB with dedicated CPU
   }
