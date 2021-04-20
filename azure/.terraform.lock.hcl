@@ -2,22 +2,23 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/azurerm" {
-  version     = "2.44.0"
-  constraints = ">= 2.44.0"
+  version     = "2.56.0"
+  constraints = ">= 2.56.0"
   hashes = [
-    "h1:j8L7xYD6MFu/TVJvVGcAQBfyieb02q/PY4fbt8Z5kOI=",
-    "h1:jf3BYFKxHpKq6aqGIZRfPDdHqkx+Fx0p0foia8Nfiqk=",
-    "h1:lNIybZl+YZN8086P/pgE8476OAwUecV7GDBnToTa8w4=",
-    "h1:utblkIG5TUDkbxUJ/xJ6gwJxv+gBlBhOOqM14Bmk+/0=",
-    "zh:0dfdcada6312a1b7216a8aef59a13604ed6d6ac364fb7e51e9c1c49289c47d2f",
-    "zh:15067fcd6273cf5b0d8582ebd0b2d5c68d2f6c64b0bd7b6b57474f1076489508",
-    "zh:2567a1c5c76b878b6de29170c70b49557388026129512ee5506dec3ad935d731",
-    "zh:287f1025574b767c73367398e7a4cbd6d7c1abc2f74694f73e885ae43c5688d8",
-    "zh:4fee5b2a2644725bcb56ac3b23e40b27b019ae95f783573a6d48bda2191fa8b8",
-    "zh:a8105c96086f0e5696eeccee19b28268a4b22246d68d5a0a8b219491ec6fee81",
-    "zh:c0bd239d8463c950b1a339693ca23fe5b85c6761124f56e13242c0f5baaeba7a",
-    "zh:c31f0fecfa59b5c343939c4d842e4b843b251c7aadb6c63820c6fb6ef09d10e6",
-    "zh:c3a1318a220270c0a3c655bd633d1204c752599953451e5c66a139bb9dc47f4f",
-    "zh:e24506af1e6f51b1dcc6109ac5ccea7b136db4a51658fe8e309adccd34997fba",
+    "h1:GaozvDvYtaeA8+EMlRO/fvf5epCBaMW09OGFjoQRG84=",
+    "h1:aX24zY2dhP8rq4NEvUjjI2AxV6C7f9OkYGrtFXaoXs4=",
+    "h1:jup9JYEl6B1ihxgKJKPASmy4mof2apFB4IB1PEkwMIE=",
+    "h1:nTw9fg12T1tsASm+jqBUVABfxe7Tje+5ho7vbBavU4Y=",
+    "zh:1994185185046df38eb1d1ad3c3b07e4f964224e4ab756957473b754f6aec75c",
+    "zh:202556c142f001830dd4514d475dc747f863ad588382c43daa604d53761f59f5",
+    "zh:3010bcf9ebe33e1195f0a7507183959918c6b88bbdc84c8cc96919654e0abcb0",
+    "zh:39ff556080515b170b10f365a0f95abf2590e9ca3d79261defea1e3133e79088",
+    "zh:500d4e787bf046bbe64c4853530aff3dfddee2fdbff0087d7b1e7a8c24388628",
+    "zh:766ff42596d643f9945b3aab2e83e306fe77c3020a5196366bbbb77eeea13b71",
+    "zh:8a7a6548a383a12aa137b0441c15fc7243a1d3e4fd8a9292946ef423d2d8bcff",
+    "zh:bb9f5e9289df17a7a07bdd3add79e41a195e3d129c2ab974b5bb6272c9812068",
+    "zh:ce72eaaecccb50f52f50c69ed3261b0a4050b846f2e664d120d30dfeb65067bc",
+    "zh:d10b33dd19316ef10965ad0fb8ca6f2743bceaf5167bd8e6e25815e20786f190",
+    "zh:fe5aba92430104238f66aaaf02acf323d457d387cd33d6b3d8c6fdd9e449b834",
   ]
 }
