@@ -47,7 +47,7 @@ variable "nodes" {
     }
     worker = {
       count       = 3
-      server_type = "ccx31" # 8CPU/32GB with dedicated CPU
+      server_type = "ccx32" # 8CPU/32GB with dedicated AMD EPYC CPU
     }
     common = {
       location = "nbg1" # See node-launcher service annotations (don't necessarily need to match)
@@ -61,7 +61,7 @@ variable "versions" {
   description = "Software versions"
   type        = map(string)
   default = {
-    kubernetes = "1.18.15"
+    kubernetes = "1.19.9"
   }
 }
 
