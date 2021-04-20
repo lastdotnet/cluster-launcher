@@ -2,7 +2,7 @@ aws:
 	cd aws && terraform init && terraform apply
 
 kubeconfig-aws:
-	cd aws && aws eks --region $(shell terraform output -raw region) update-kubeconfig --name $(shell terraform output -raw cluster_name)
+	aws eks --region $(shell cd aws && terraform output -raw region) update-kubeconfig --name $(shell cd aws && terraform output -raw cluster_name)
 
 aws-backups:
 	@read -p "Add backups? Cluster and node must be running... (press any key to continue)"
@@ -18,7 +18,7 @@ azure:
 	cd azure && terraform init && terraform apply
 
 kubeconfig-azure:
-	cd azure && az aks get-credentials -a -g $(shell terraform output -raw resource_group) -n $(shell terraform output -raw cluster_name)
+	az aks get-credentials -a -g $(shell cd azure && terraform output -raw resource_group) -n $(shell cd azure && terraform output -raw cluster_name)
 
 destroy-azure:
 	cd azure && terraform destroy
@@ -27,7 +27,7 @@ do:
 	cd do && terraform init && terraform apply
 
 kubeconfig-do:
-	cd do && az doctl kubernetes cluster kubeconfig save $(shell terraform output -raw cluster_name)
+	doctl kubernetes cluster kubeconfig save $(shell cd do && terraform output -raw cluster_name)
 
 destroy-do:
 	cd do && terraform destroy
@@ -36,7 +36,7 @@ gcp:
 	cd gcp && terraform init && terraform apply
 
 kubeconfig-gcp:
-	cd gcp && gcloud container clusters get-credentials $(shell terraform output -raw cluster_name) --region $(shell terraform output -raw location)
+	gcloud container clusters get-credentials $(shell cd gcp && terraform output -raw cluster_name) --region $(shell cd gcp && terraform output -raw location)
 
 destroy-gcp:
 	cd gcp && terraform destroy
@@ -45,7 +45,7 @@ hcloud:
 	cd hcloud && terraform init && terraform apply && cd ansible && make provision
 
 kubeconfig-hcloud:
-	cd hcloud && scp $(shell terraform output -raw hcloud_config) "$(HOME)/.kube/config-hcloud"
+	scp $(shell cd hcloud && terraform output -raw hcloud_config) "$(HOME)/.kube/config-hcloud"
 	KUBECONFIG="$(HOME)/.kube/config:$(HOME)/.kube/config-hcloud" kubectl config view --flatten > "$(HOME)/.kube/tmpcfg" && mv -f "$(HOME)/.kube/tmpcfg" "$(HOME)/.kube/config" && kubectl config use-context $(shell kubectl config current-context --kubeconfig="$(HOME)/.kube/config-hcloud")
 
 destroy-hcloud:
