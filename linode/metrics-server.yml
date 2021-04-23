@@ -136,7 +136,7 @@ spec:
         - --kubelet-preferred-address-types=InternalIP  # same as in node_launcher
         - --kubelet-use-node-status-port
         - --kubelet-insecure-tls  # required to work on LKE
-        image: k8s.gcr.io/metrics-server/metrics-server:v0.4.1
+        image: k8s.gcr.io/metrics-server/metrics-server:v0.4.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
