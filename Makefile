@@ -1,5 +1,6 @@
 aws:
 	cd aws && terraform init && terraform apply
+	kubectl patch storageclass gp2 -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 
 kubeconfig-aws:
 	aws eks --region $(shell cd aws && terraform output -raw region) update-kubeconfig --name $(shell cd aws && terraform output -raw cluster_name)
