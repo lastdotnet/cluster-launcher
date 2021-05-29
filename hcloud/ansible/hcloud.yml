@@ -1,4 +1,4 @@
-- hosts: kube-master[0]
+- hosts: kube_control_plane[0]
   strategy: linear
   name: Deploy hcloud controller manager and csi
   roles:
