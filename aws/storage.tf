@@ -182,11 +182,11 @@ resource "aws_iam_role_policy_attachment" "ebs_attach" {
   }
 }
 
-resource "kubernetes_storage_class" "ebs_sc" {
+resource "kubernetes_storage_class" "ebs_gp3" {
   depends_on = [module.eks]
 
   metadata {
-    name = "ebs-sc"
+    name = "ebs-gp3"
     annotations = {
       "storageclass.kubernetes.io/is-default-class" = true
     }
@@ -198,8 +198,26 @@ resource "kubernetes_storage_class" "ebs_sc" {
   allow_volume_expansion = true
 
   parameters = {
+    type       = "gp3"
+    iops       = 3000
+    throughput = 500
+  }
+}
+
+resource "kubernetes_storage_class" "ebs_io2" {
+  depends_on = [module.eks]
+
+  metadata {
+    name = "ebs-io2"
+  }
+
+  storage_provisioner    = "ebs.csi.aws.com"
+  reclaim_policy         = "Delete"
+  volume_binding_mode    = "WaitForFirstConsumer"
+  allow_volume_expansion = true
+
+  parameters = {
     type                       = "io2"
-    fsType                     = "ext4"
     iopsPerGB                  = 500
     allowAutoIOPSPerGBIncrease = true
   }
