@@ -2,23 +2,23 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/google" {
-  version     = "3.66.1"
-  constraints = ">= 3.66.0"
+  version     = "3.71.0"
+  constraints = ">= 3.71.0"
   hashes = [
-    "h1:ahMvHQoyF5/V/D5MvyXJTUz/Xd3Z1zbnqG0vbkzziBM=",
-    "h1:eRQ4aVjTgXP1uUlUnjTStY0o0I8Q2Ec5HwQffLfN/mg=",
-    "h1:nIrGpoTZqWedkFGCphp0Upgzg70HrVITxBalQy314go=",
-    "h1:oyVU+NXuJovmCHpyj9vvuUnDxgGFNN+HyCgbIBoEcug=",
-    "zh:18c6e686439f2b8ab054cc22ddd42737f0e9cc193798e7bdbf230ce8a64c0e57",
-    "zh:400fad5207b606972b91b0f6cb599b79e2f473435760236780001eb11f4f88a5",
-    "zh:46e4fb036ab56067ca4c121a89bde23ddd4c50e3e696d2d826efa8583d7c8845",
-    "zh:48438bf8be72adec0bc3ee23eca05db2ab772f4a7e31d22cccf217e0ddb7b316",
-    "zh:4b2d88ff13624b7a9e5bb1b84e290cb6cc64090e0d29e54b536a0d931ebdaa56",
-    "zh:5485b05bc3d03319f4d11fa53821f446ba3d26e500e616fc4bd4248de41cb637",
-    "zh:a45ef1cc10a7eac6cffe8f7c84e07f05e2db6c56645141a58c8ebb3cbe25a5c0",
-    "zh:bfd17635f3a9e35362d112483d226d9e4dcd94556af5b06b1127a843adc132f9",
-    "zh:d03ed0ece4438b8377ba5442f7f8d09e1aae0b04d47b39ba56e10379ed562d16",
-    "zh:d72a78c99806cdf305c39c684882200b1e4cc64a27c7e11f8383545537102977",
-    "zh:e7ed250128ce98beea9c9526543dc109f90d085e0f581172f94815496d6bdebd",
+    "h1:2TKIPbA+rqmJ5jfLk8AIsi7CAAqhhA+kO2676RuO7gU=",
+    "h1:2agsqBYck8eap+s4K9TCY6yE2VPLHiuOFa0AeyZZP90=",
+    "h1:IbmbFG0X5XFdJXTXLgvYstC1YuWb8HioHOPo5E/2EvI=",
+    "h1:V+P963WkMRJ4nn8NIlOtYxgVBHlaKHT/mLZ5n7uwsvk=",
+    "zh:0ed7d1a873011aa0b0d00d2e377b4fbf4a2d4164c69956afa65adb47220d7ca0",
+    "zh:80448ba1bc094cf2a4c1b7aa00519846fe636c5f964e53d7a5706a6cbdd009cd",
+    "zh:81dab2e452c23e3c4f659799b0b076c129cb9fe866037fdde94ecb28dbea56be",
+    "zh:8b15d9c37cd04303f866b66bffe13c15d8e3254459958ebaad184d63dc1f5da0",
+    "zh:920b8b65a6900057c664cb099d64cc58f88ca4ab38e13e2c805cf2413a82795b",
+    "zh:bd022571709bff30d9d18a1bb2a383df85027b01ffbbf92ce9e514d48557899e",
+    "zh:c68b306b61e637a66f8c20580f23143517f957ed74b52476e4094a14fd72e615",
+    "zh:e5f2fe60bc99612cc089265d7003f6d2007304ec37367a43eb65716de2d1f491",
+    "zh:e865d87acf9c357b12ed55538d8d974a708762ed6288119e4c33591cae70159e",
+    "zh:f7b52e22b86f11a06f822a9b1176a4d50e120a6b4cfce61a0574007b5d143370",
+    "zh:ff98905d147426cfc5b018184706774e323993f773333802999eec9974c58773",
   ]
 }
