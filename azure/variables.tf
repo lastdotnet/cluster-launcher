@@ -29,7 +29,7 @@ variable "regional_availability_zones" {
 variable "kubernetes_version" {
   description = "Version of Kubernetes specified when creating the AKS managed cluster"
   type        = string
-  default     = "1.19.7"
+  default     = "1.19.11"
 }
 
 variable "tags" {
