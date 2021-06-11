@@ -19,15 +19,15 @@ all:
 %{ for master in masters ~}
         ${master.name}: {}
 %{ endfor ~}
-    k8s-cluster:
+    k8s_cluster:
       children:
-        calico-rr: {}
-        kube-master:
+        calico_rr: {}
+        kube_control_plane:
           hosts:
 %{ for master in masters ~}
             ${master.name}: {}
 %{ endfor ~}
-        kube-node:
+        kube_node:
           hosts:
 %{ for worker in workers ~}
             ${worker.name}: {}
