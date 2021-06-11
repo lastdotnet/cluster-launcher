@@ -204,6 +204,23 @@ resource "kubernetes_storage_class" "ebs_gp3" {
   }
 }
 
+resource "kubernetes_storage_class" "ebs_gp2" {
+  depends_on = [module.eks]
+
+  metadata {
+    name = "ebs-gp2"
+  }
+
+  storage_provisioner    = "ebs.csi.aws.com"
+  reclaim_policy         = "Delete"
+  volume_binding_mode    = "WaitForFirstConsumer"
+  allow_volume_expansion = true
+
+  parameters = {
+    type = "gp2"
+  }
+}
+
 resource "kubernetes_storage_class" "ebs_io2" {
   depends_on = [module.eks]
 
@@ -218,7 +235,7 @@ resource "kubernetes_storage_class" "ebs_io2" {
 
   parameters = {
     type                       = "io2"
-    iopsPerGB                  = 500
+    iopsPerGB                  = 100
     allowAutoIOPSPerGBIncrease = true
   }
 }

@@ -116,9 +116,7 @@ terraform apply
 
 ## Configure kubectl
 
-THIS IS DONE AUTOMATICALLY NOW.
-
-Now that you've provisioned your EKS cluster, you need to configure kubectl. Customize the following command with your cluster name and region. It will get the access credentials for your cluster and automatically configure kubectl.
+This is done automatically during provisioning. To configure authentication from the command line, use the following command. It will get the access credentials for your cluster and automatically configure kubectl in case you need to to manually reconfigure kubectl.
 
 ```bash
 make kubeconfig-aws
