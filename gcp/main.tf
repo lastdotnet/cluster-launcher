@@ -19,7 +19,7 @@ resource "google_container_cluster" "cluster" {
 }
 
 resource "google_container_node_pool" "nodes" {
-  name     = "${google_container_cluster.cluster.name}-nodes"
+  name     = "${var.project_id}-nodes"
   location = google_container_cluster.cluster.location
   cluster  = google_container_cluster.cluster.name
 

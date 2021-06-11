@@ -7,7 +7,7 @@
   roles:
     - users
 
-- hosts: kube-master
+- hosts: kube_control_plane
   strategy: linear
   name: Post k8s control plane provisioning
   tasks:
