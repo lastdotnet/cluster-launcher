@@ -1,8 +1,8 @@
 data "aws_caller_identity" "user" {}
 
 locals {
-  role   = "AmazonEKS_EBS_CSI_DriverRole"
-  policy = "AmazonEKS_EBS_CSI_Driver_Policy"
+  role   = "${var.cluster_name}_EBS_CSI_DriverRole"
+  policy = "${var.cluster_name}_EBS_CSI_Driver_Policy"
   arn    = module.eks.oidc_provider_arn
   oid    = regex(".*/(.*)$", local.arn)[0]
 }
