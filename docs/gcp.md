@@ -111,14 +111,6 @@ kubectl cluster-info
 kubectl get nodes
 ```
 
-## Patch storage classes
-
-VERY IMPORTANT: On GKE you need to patch storage classes to use `pd-ssd` by default for volumes.
-
-```bash
-make gcp-post
-```
-
 ## Clean up your workspace
 
 To destroy and remove previously created resources, you can run the command below.
