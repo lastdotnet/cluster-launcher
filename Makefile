@@ -41,6 +41,7 @@ gcp-pre:
 gcp-post:
 	kubectl patch storageclass premium-rwo -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 	kubectl patch storageclass standard -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+	cd gcp && kubectl apply -f storage-snapshot-class.yml
 
 kubeconfig-gcp:
 	gcloud container clusters get-credentials $(shell cd gcp && terraform output -raw cluster_name) --region $(shell cd gcp && terraform output -raw location)
