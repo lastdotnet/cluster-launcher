@@ -36,18 +36,18 @@ kubeconfig-do:
 destroy-do:
 	cd do && terraform destroy
 
-gcp:
-	@echo "Don't forget to run 'make gcp-post' as the last step."
-	@echo "Your cluster will not run as a proper THORNode if skipped."
-	@echo "Read the docs. Continue [y/n] " && read ans && [ $${ans:-N} == y ]
+gcp-pre:
 	cd gcp && terraform init && terraform apply
 
 gcp-post:
 	kubectl patch storageclass premium-rwo -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 	kubectl patch storageclass standard -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+	cd gcp && kubectl apply -f storage-snapshot-class.yml
 
 kubeconfig-gcp:
 	gcloud container clusters get-credentials $(shell cd gcp && terraform output -raw cluster_name) --region $(shell cd gcp && terraform output -raw location)
+
+gcp: gcp-pre kubeconfig-gcp gcp-post
 
 destroy-gcp:
 	cd gcp && terraform destroy
