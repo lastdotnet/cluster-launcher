@@ -2,23 +2,23 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/azurerm" {
-  version     = "2.62.1"
-  constraints = ">= 2.62.0"
+  version     = "2.71.0"
+  constraints = ">= 2.71.0"
   hashes = [
-    "h1:BXAxRsYeAGVQhoixos3h3wykoSIeto0604TFNMTjCBE=",
-    "h1:DrqFr14PbkdCjYrPcRfN3c7wCnRui7iggBRSbrBEuTA=",
-    "h1:KyORm1OEJ8nVmiafLUla5JdGffixNh7VCM/wTXH9ZfM=",
-    "h1:QhP6grVYdqzdeEl9kW3waWDXpGqO7q0pDfyBVU9fois=",
-    "zh:4a810e2ff90219efdc26234b5ac2171d97dfa31dfd465e73ff24fdea3bcbf745",
-    "zh:61af756776c24ae79949724f83f4b39582cfdcfc67c8806ff6a39c340acc7a50",
-    "zh:6b9042c511f4499ef3cb38730bb781b6a98e52d6491b34d9030f2658c78486ac",
-    "zh:6ff6b736339302623272869a6f4e2ed5dfad0975227addee09495de83e878c6e",
-    "zh:7ff411ff41e07dacb54b742e0645960555d5a783e868cfe427c79fcff6e1a3b1",
-    "zh:8e316717334727cb424a9bc86624fb3a9dbf1389658dfa316007221d11bb45db",
-    "zh:c64b1114b928c1c352d80ccac81244bada31c03522606bd4098b85ff4e78f00b",
-    "zh:ca52ab530c0e7a9fc32342149e26bf632f9f1a3019c720dff7ce0721e3c220e3",
-    "zh:d03e0a3cca4b8c155db62f06712e77b344289e5e8ed16ff9213fb8b496d842c3",
-    "zh:d9f0b71ab5d34c9ff8b237ab4317e4f6eaa0306599154940495f303c3eac2e7b",
-    "zh:ed70b51555cdcf3f91227cf64d229d78cbed137c50b138226d1f39697e9ebb3f",
+    "h1:1xWeLWkN6anWviXW3fMWy2hAPEKMbRkLHgCIohg/mjI=",
+    "h1:RiFIxNI4Yr9CqleqEdgg1ydLAZ5JiYiz6l5iTD3WcuU=",
+    "h1:ULax/q7p3Tl0l8DnXV9GNmdDRR1MHpimyLq8OP6E6I0=",
+    "h1:yiKxkinLq/QtwXblQmG+X+ezj2fOqMbcG8A34ifq5wM=",
+    "zh:2b9d8a703a0222f72cbceb8d2bdb580066afdcd7f28b6ad65d5ed935319b5433",
+    "zh:332988f4c1747bcc8ebd32734bf8de2bea4c13a6fbd08d7eb97d0c43d335b15e",
+    "zh:3a902470276ba48e23ad4dd6baff16a9ce3b60b29c0b07064dbe96ce4640a31c",
+    "zh:5eaa0d0c2c6554913421be10fbf4bb6a9ef98fbbd750d3d1f02c99798aae2c22",
+    "zh:67859f40ed2f770f33ace9d3911e8b9c9be505947b38a0578e6d097f5db1d4bf",
+    "zh:7cd9bf4899fe383fc7eeede03cad138d637244878cd295a7a1044ca20ca0652c",
+    "zh:afcb82c1382a1a9d63a41137321e077144aad768e4e46057a7ea604d067b4181",
+    "zh:c6e358759ed00a628dcfe7adb0906b2c98576ac3056fdd70930786d404e1da66",
+    "zh:cb3390c34f6790ad656929d0268ab3bc082678e8cbe2add0a177cf7896068844",
+    "zh:cc213dbf59cf41506e86b83492ccfef6ef5f34d4d00d9e49fc8a01fee253f4ee",
+    "zh:d1e8c9b507e2d187ea2447ae156028ba3f76db2164674761987c14217d04fee5",
   ]
 }

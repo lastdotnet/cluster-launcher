@@ -29,7 +29,7 @@ variable "regional_availability_zones" {
 variable "kubernetes_version" {
   description = "Version of Kubernetes specified when creating the AKS managed cluster"
   type        = string
-  default     = "1.19.11"
+  default     = "1.21.2"
 }
 
 variable "tags" {
@@ -44,6 +44,6 @@ variable "tags" {
 locals {
   is_zonal           = length(regexall("-", var.location)) == 1
   region             = local.is_zonal ? regex("(.*)(..$)", var.location)[0] : var.location
-  availability_zones = local.is_zonal ? list(regex("(.*)(.$)", var.location)[1]) : var.regional_availability_zones
+  availability_zones = local.is_zonal ? tolist([regex("(.*)(.$)", var.location)[1]]) : var.regional_availability_zones
   measure            = length(local.availability_zones)
 }
