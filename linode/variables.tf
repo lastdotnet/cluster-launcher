@@ -11,7 +11,7 @@ variable "region" {
 variable "cluster_version" {
   description = "Linode Kubernetes cluster version"
   type        = string
-  default     = "1.19"
+  default     = "1.21"
 }
 
 variable "kubeconfig_path" {
