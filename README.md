@@ -30,6 +30,17 @@ Terraform is a tool for building, changing, and versioning infrastructure safely
 * [Hetzner Cloud](docs/hcloud.md)
 * [Linode](docs/linode.md)
 
+### Volume Snapshots Capabilities
+
+Provider | Enabled
+---------|--------
+AWS      | yes
+Azure    | no
+DO       | yes
+GCP      | yes
+hcloud   | no
+Linode   | no
+
 ## THORNode
 
 Once you have a Kubernetes cluster up and running, please refer to the [documentation here](https://gitlab.com/thorchain/devops/node-launcher) to get started with your THORNode.
