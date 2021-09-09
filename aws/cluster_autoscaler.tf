@@ -231,7 +231,7 @@ resource "kubernetes_deployment" "cluster_autoscaler" {
   }
 
   spec {
-    replicas = 1
+    replicas = 2
 
     selector {
       match_labels = {
@@ -276,11 +276,11 @@ resource "kubernetes_deployment" "cluster_autoscaler" {
           resources {
             limits {
               cpu    = "0.1"
-              memory = "512Mi"
+              memory = "1000Mi"
             }
             requests {
               cpu    = "0.1"
-              memory = "96Mi"
+              memory = "100Mi"
             }
           }
         }
