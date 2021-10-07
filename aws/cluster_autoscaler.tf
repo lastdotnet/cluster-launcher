@@ -280,7 +280,7 @@ resource "kubernetes_deployment" "cluster_autoscaler" {
             }
             requests = {
               cpu    = "0.1"
-              memory = "100Mi"
+              memory = "1000Mi"
             }
           }
         }
