@@ -2,23 +2,23 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/azurerm" {
-  version     = "2.71.0"
-  constraints = ">= 2.71.0"
+  version     = "2.79.1"
+  constraints = ">= 2.79.0"
   hashes = [
-    "h1:1xWeLWkN6anWviXW3fMWy2hAPEKMbRkLHgCIohg/mjI=",
-    "h1:RiFIxNI4Yr9CqleqEdgg1ydLAZ5JiYiz6l5iTD3WcuU=",
-    "h1:ULax/q7p3Tl0l8DnXV9GNmdDRR1MHpimyLq8OP6E6I0=",
-    "h1:yiKxkinLq/QtwXblQmG+X+ezj2fOqMbcG8A34ifq5wM=",
-    "zh:2b9d8a703a0222f72cbceb8d2bdb580066afdcd7f28b6ad65d5ed935319b5433",
-    "zh:332988f4c1747bcc8ebd32734bf8de2bea4c13a6fbd08d7eb97d0c43d335b15e",
-    "zh:3a902470276ba48e23ad4dd6baff16a9ce3b60b29c0b07064dbe96ce4640a31c",
-    "zh:5eaa0d0c2c6554913421be10fbf4bb6a9ef98fbbd750d3d1f02c99798aae2c22",
-    "zh:67859f40ed2f770f33ace9d3911e8b9c9be505947b38a0578e6d097f5db1d4bf",
-    "zh:7cd9bf4899fe383fc7eeede03cad138d637244878cd295a7a1044ca20ca0652c",
-    "zh:afcb82c1382a1a9d63a41137321e077144aad768e4e46057a7ea604d067b4181",
-    "zh:c6e358759ed00a628dcfe7adb0906b2c98576ac3056fdd70930786d404e1da66",
-    "zh:cb3390c34f6790ad656929d0268ab3bc082678e8cbe2add0a177cf7896068844",
-    "zh:cc213dbf59cf41506e86b83492ccfef6ef5f34d4d00d9e49fc8a01fee253f4ee",
-    "zh:d1e8c9b507e2d187ea2447ae156028ba3f76db2164674761987c14217d04fee5",
+    "h1:CZ+0QZZIJyaXKM7torsFFkYsB5L334gg1CZub42jtv8=",
+    "h1:MGGyM8L5OL36wFGSytfdNNctedj5zrT4u5izNejQdqw=",
+    "h1:jPlACSoNUhzN7FpvgK8pze5IqtVt7Xw/0+kdzQmoIDI=",
+    "h1:thTY9FkeMHlhujrOJ+PVa5EpKeHxHX+FuADd2QqhMOI=",
+    "zh:120da7d501adb34c5600a09847e483e953cf45badb76c2e213f11beba5856bee",
+    "zh:2e1fb026cc2eb76aba2129661a9bdf0e4014668c2ea045208148b505aa708f6f",
+    "zh:3541d4daac9c07c6ffbb2f266c731efa32e08c3b72bd9b5454d368f418f3dd1c",
+    "zh:3efe2ee3cb51820d18ed5f3456f3ef8dcdfeb90d79790a1a1f8f3a8c2430e8a0",
+    "zh:46c1cc27031138f41e0bb4bee16df10431c963f23d0716583b7e66cf9be1b58a",
+    "zh:61125f3af098955320409dcb801a239059e3062937c9eded80cd2296bccabc3c",
+    "zh:681fc0457852db69dd1ce142c830e849f7d4293f7c6ab295bd493a1f7fb68133",
+    "zh:aa1e101f425f89a672e9821d11518fb93450d117ce6588852e87af369bdefc66",
+    "zh:be8120f98fcacaad9ae88986ea8018d715b03c00ff3fc23954af9c8be0c4e4f1",
+    "zh:d6c957b6fb43810a48c39ee907bdef2306b577a50df8cc231a6cd71650fb7009",
+    "zh:df243c69f4823935f34c2eb0a46f83050e2d78026bf953eacc580710dc4c1e40",
   ]
 }
