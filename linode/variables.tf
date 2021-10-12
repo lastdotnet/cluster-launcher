@@ -35,7 +35,9 @@ variable "pool_settings" {
   description = "Cluster pool settings"
   type        = map(string)
   default = {
-    count         = 3
-    instance_type = "g6-dedicated-16" # 16CPU/32GB with dedicated CPU
+    desired_capacity = 3
+    min_capacity     = 3
+    max_capacity     = 10
+    instance_type    = "g6-dedicated-16" # 16CPU/32GB with dedicated CPU
   }
 }

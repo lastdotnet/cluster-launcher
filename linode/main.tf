@@ -6,7 +6,12 @@ resource "linode_lke_cluster" "cluster" {
 
   pool {
     type  = var.pool_settings["instance_type"]
-    count = var.pool_settings["count"]
+    count = var.pool_settings["desired_capacity"]
+
+    autoscaler {
+      min = var.pool_settings["min_capacity"]
+      max = var.pool_settings["max_capacity"]
+    }
   }
 }
 
