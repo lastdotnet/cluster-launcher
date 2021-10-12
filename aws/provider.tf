@@ -4,11 +4,11 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 3.57"
+      version = ">= 3.61"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = ">= 1.13, < 2.0"
+      version = ">= 2.5"
     }
     helm = {
       source  = "hashicorp/helm"
@@ -23,9 +23,8 @@ provider "aws" {
 
 provider "kubernetes" {
   host                   = data.aws_eks_cluster.cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
   token                  = data.aws_eks_cluster_auth.cluster.token
-  load_config_file       = false
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
 }
 
 data "aws_eks_cluster" "cluster" {
@@ -39,7 +38,9 @@ data "aws_eks_cluster_auth" "cluster" {
 provider "helm" {
   kubernetes {
     host                   = data.aws_eks_cluster.cluster.endpoint
-    cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
     token                  = data.aws_eks_cluster_auth.cluster.token
+    cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
   }
 }
+
+data "aws_availability_zones" "available" {}

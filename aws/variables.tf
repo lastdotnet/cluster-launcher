@@ -4,9 +4,9 @@ variable "region" {
 }
 
 variable "az" {
-  description = "AWS availability zones"
+  description = "Customized AWS availability zones"
   type        = list(string)
-  default     = ["a", "b", "c"]
+  default     = []
 }
 
 variable "vpc_cidr" {
