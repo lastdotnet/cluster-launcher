@@ -14,6 +14,12 @@ variable "kubernetes_version" {
   default     = "1.21.3-do.0"
 }
 
+variable "control_plane_ha" {
+  description = "Highly available kubernetes control plane"
+  type        = bool
+  default     = true
+}
+
 variable "name" {
   description = "The base name used for all resources"
   type        = string
