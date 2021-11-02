@@ -1,6 +1,7 @@
 resource "digitalocean_kubernetes_cluster" "cluster" {
   name    = "${var.name}-cluster"
   region  = var.region
+  ha      = var.control_plane_ha
   version = var.kubernetes_version
   tags    = var.tags
 
