@@ -61,7 +61,7 @@ variable "versions" {
   description = "Software versions"
   type        = map(string)
   default = {
-    kubernetes = "1.21.1"
+    kubernetes = "1.21.6"
   }
 }
 
