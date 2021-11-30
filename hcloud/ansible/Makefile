@@ -6,11 +6,11 @@ initialize:
 	@$(APB) init.yml -i $(INVENTORY)
 
 kubernetes:
-	@$(APB) --become --become-user=root kubespray/cluster.yml -i $(INVENTORY)
+	@$(APB) --become --become-user=root ../../.kubespray/cluster.yml -i $(INVENTORY)
 	@$(APB) post.yml -i $(INVENTORY)
 
 remove-kubernetes:
-	@$(APB_LIN) --become --become-user=root kubespray/reset.yml -i $(INVENTORY)
+	@$(APB_LIN) --become --become-user=root ../../.kubespray/reset.yml -i $(INVENTORY)
 
 hcloud:
 	@$(APB) hcloud.yml -i $(INVENTORY)

@@ -63,21 +63,22 @@ Initialize the git submodule.
 git submodule update --init
 ```
 
-Use `direnv`, `venv` or whatever you prefer to manage a python environment inside the hcloud folder.
+Use `direnv`, `venv` or whatever you prefer to manage a python environment.
 
 ```bash
 # Optional
-(cd hcloud && direnv allow)
+direnv allow
 
 # Optional
-(cd hcloud && virtualenv -p python3 venv)
+virtualenv -p python3 venv
 ```
 
 Install dependencies required by Python and Ansible Galaxy.
 
 ```bash
-(cd hcloud && pip install -r ansible/requirements.txt)
-(cd hcloud && ansible-galaxy install -r ansible/requirements.yml)
+# Apple Silicon: env LDFLAGS="-L$(brew --prefix openssl@1.1)/lib" CFLAGS="-I$(brew --prefix openssl@1.1)/include"
+pip install -r hcloud/ansible/requirements.txt
+ansible-galaxy install -r hcloud/ansible/requirements.yml
 ```
 
 ## Deploy Kubernetes Cluster
@@ -126,6 +127,18 @@ Once done, you can check your cluster is responding correctly by running the com
 kubectl version
 kubectl cluster-info
 kubectl get nodes
+```
+
+## THORNode Gateway Load Balancer Location
+
+In the `node-launcher` repository, you can edit the `load-balancer.hetzner.cloud/location: nbg1` entry of the `gateway/templates/service.yaml` file. Any of the following locations are valid.
+
+```text
+ID   NAME   DESCRIPTION             NETWORK ZONE   COUNTRY   CITY
+1    fsn1   Falkenstein DC Park 1   eu-central     DE        Falkenstein
+2    nbg1   Nuremberg DC Park 1     eu-central     DE        Nuremberg
+3    hel1   Helsinki DC Park 1      eu-central     FI        Helsinki
+4    ash    Ashburn, VA             us-east        US        Ashburn, VA
 ```
 
 ## Clean up your workspace
