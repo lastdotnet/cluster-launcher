@@ -21,7 +21,7 @@ variable "network" {
 variable "kubernetes_version" {
   description = "GKE kubernetes version"
   type        = string
-  default     = "1.20.10-gke.301"
+  default     = "1.20" # Auto upgrade to latest patch version
 }
 
 variable "nodes" {
