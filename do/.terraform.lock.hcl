@@ -3,7 +3,7 @@
 
 provider "registry.terraform.io/digitalocean/digitalocean" {
   version     = "2.17.1"
-  constraints = ">= 2.17.0"
+  constraints = "~> 2.17"
   hashes = [
     "h1:00hYxmaxcTm+hAnpRHBwkxO9gNbIQpKpEO6MQm5Yy2k=",
     "h1:0m6ziZVws3U9LNnqv8zFbGeMnHVD+YJFb5Utu+5pFoA=",
@@ -30,7 +30,7 @@ provider "registry.terraform.io/digitalocean/digitalocean" {
 
 provider "registry.terraform.io/hashicorp/local" {
   version     = "2.1.0"
-  constraints = ">= 2.1.0"
+  constraints = "~> 2.1"
   hashes = [
     "h1:/OpJKWupvFd8WJX1mTt8vi01pP7dkA6e//4l4C3TExE=",
     "h1:EYZdckuGU3n6APs97nS2LxZm3dDtGqyM4qaIvsmac8o=",
