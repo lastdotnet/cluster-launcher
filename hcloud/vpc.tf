@@ -6,6 +6,6 @@ resource "hcloud_network" "net" {
 resource "hcloud_network_subnet" "subnet" {
   network_id   = hcloud_network.net.id
   type         = "cloud"
-  network_zone = var.network.zone
+  network_zone = local.network_region
   ip_range     = var.network.sub
 }

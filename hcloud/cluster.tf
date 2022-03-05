@@ -10,11 +10,11 @@ resource "hcloud_server" "master" {
 
   server_type = var.nodes.master.server_type
 
-  location = var.nodes.common.location
+  location = var.location
   image    = var.nodes.common.image
 
   ssh_keys  = [hcloud_ssh_key.key.id]
-  user_data = data.template_file.ci.rendered
+  user_data = local.cloud_config
 }
 
 resource "hcloud_server" "worker" {
@@ -23,11 +23,11 @@ resource "hcloud_server" "worker" {
 
   server_type = var.nodes.worker.server_type
 
-  location = var.nodes.common.location
+  location = var.location
   image    = var.nodes.common.image
 
   ssh_keys  = [hcloud_ssh_key.key.id]
-  user_data = data.template_file.ci.rendered
+  user_data = local.cloud_config
 }
 
 locals {

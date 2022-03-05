@@ -6,7 +6,7 @@ resource "hcloud_load_balancer_network" "lb_net" {
 resource "hcloud_load_balancer" "lb" {
   name               = "${var.name}-lb"
   load_balancer_type = var.nodes.common.lb_type
-  location           = var.nodes.common.location
+  location           = var.location
 }
 
 resource "hcloud_load_balancer_service" "lb_service" {
