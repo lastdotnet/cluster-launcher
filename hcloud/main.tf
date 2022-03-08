@@ -3,8 +3,8 @@ resource "hcloud_ssh_key" "key" {
   public_key = file("${var.ssh_key}.pub")
 }
 
-data "template_file" "ci" {
-  template = templatefile(var.cloud_config, {
+locals {
+  cloud_config = templatefile(var.cloud_config, {
     custom_packages = var.custom_packages
     user = {
       name = var.user_name
