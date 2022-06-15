@@ -40,7 +40,7 @@ gcp-pre:
 	cd gcp && terraform init && terraform apply
 
 gcp-post:
-	kubectl patch storageclass premium-rwo -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+	kubectl patch storageclass standard-rwo -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 	kubectl patch storageclass standard -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 	cd gcp && kubectl apply -f storage-snapshot-class.yml
 
