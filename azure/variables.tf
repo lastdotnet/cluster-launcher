@@ -13,7 +13,7 @@ variable "node_pool_settings" {
   type        = map(string)
   default = {
     desired_capacity = 3
-    max_capacity     = 4
+    max_capacity     = 10
     min_capacity     = 1
     instance_type    = "Standard_D8as_v4" # 8CPU/32GB
     disk_size        = 100
