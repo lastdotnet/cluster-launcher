@@ -150,19 +150,3 @@ Or run the commands manually:
 cd aws/
 terraform destroy
 ```
-
-## Automated Backups (optional)
-
-Once your node is running, use the following command to automatically backup the Persistent Volumes for your Kubernetes cluster. This may help in recovering your node in the event of a disaster.
-
-Enable backups:
-
-```bash
-make aws-backups
-```
-
-Disable backups:
-
-```bash
-make aws-destroy-backups
-```
