@@ -18,7 +18,7 @@ variable "vpc_cidr" {
 variable "cluster_version" {
   description = "EKS cluster version"
   type        = string
-  default     = "1.21"
+  default     = "1.24"
 }
 
 variable "cluster_name" {
