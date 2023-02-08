@@ -1,6 +1,7 @@
 resource "aws_iam_role_policy_attachment" "cluster_autoscaler" {
+  for_each = module.eks.eks_managed_node_groups
   policy_arn = aws_iam_policy.cluster_autoscaler.arn
-  role       = module.eks.worker_iam_role_name
+  role       = each.value.iam_role_name
 }
 
 resource "aws_iam_policy" "cluster_autoscaler" {
@@ -59,6 +60,15 @@ resource "kubernetes_service_account" "cluster_autoscaler" {
       k8s-addon = "cluster-autoscaler.addons.k8s.io"
       k8s-app   = "cluster-autoscaler"
     }
+  }
+  secret {
+    name = "${kubernetes_secret.cluster_autoscaler.metadata.0.name}"
+  }
+}
+
+resource "kubernetes_secret" "cluster_autoscaler" {
+  metadata {
+    name = "cluster-autoscaler"
   }
 }
 
@@ -254,7 +264,7 @@ resource "kubernetes_deployment" "cluster_autoscaler" {
         automount_service_account_token = true
         service_account_name            = "cluster-autoscaler"
         container {
-          image             = "k8s.gcr.io/cluster-autoscaler:v1.18.0"
+          image             = "k8s.gcr.io/autoscaling/cluster-autoscaler:v1.25.0"
           image_pull_policy = "Always"
           name              = "cluster-autoscaler"
           command = [
