@@ -17,7 +17,7 @@ resource "kubernetes_storage_class" "ebs_gp3" {
   provisioner "local-exec" {
     command = "kubectl patch storageclass gp2 -p '{\"metadata\": {\"annotations\":{\"storageclass.kubernetes.io/is-default-class\":\"false\"}}}'"
   }
-  
+
   metadata {
     name = "ebs-gp3"
     annotations = {

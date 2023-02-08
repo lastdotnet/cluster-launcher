@@ -1,5 +1,5 @@
 resource "aws_iam_role_policy_attachment" "cluster_autoscaler" {
-  for_each = module.eks.eks_managed_node_groups
+  for_each   = module.eks.eks_managed_node_groups
   policy_arn = aws_iam_policy.cluster_autoscaler.arn
   role       = each.value.iam_role_name
 }
@@ -62,7 +62,7 @@ resource "kubernetes_service_account" "cluster_autoscaler" {
     }
   }
   secret {
-    name = "${kubernetes_secret.cluster_autoscaler.metadata.0.name}"
+    name = kubernetes_secret.cluster_autoscaler.metadata.0.name
   }
 }
 
