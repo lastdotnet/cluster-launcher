@@ -1,22 +1,11 @@
 aws:
 	cd aws && terraform init && terraform apply
-	kubectl patch storageclass gp2 -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
-	cd aws && kubectl apply -f storage-snapshot-crd.yml
-	cd aws && kubectl apply -f storage-snapshot-class.yml
-	cd aws && kubectl apply -f storage-snapshot-controller.yml
 
 kubeconfig-aws:
 	aws eks --region $(shell cd aws && terraform output -raw region) update-kubeconfig --name $(shell cd aws && terraform output -raw cluster_name)
 
-aws-backups:
-	@read -p "Add backups? Cluster and node must be running... (press any key to continue)"
-	cd aws/backups && terraform init && terraform apply
-
 destroy-aws:
 	cd aws && terraform destroy
-
-destroy-aws-backups:
-	cd aws/backups && terraform destroy
 
 azure:
 	cd azure && terraform init && terraform apply
@@ -78,4 +67,4 @@ kubeconfig-linode:
 destroy-linode:
 	cd linode && terraform destroy
 
-.PHONY: aws kubeconfig-aws aws-backups destroy-aws destroy-aws-backups azure kubeconfig-azure destroy-azure do kubeconfig-do destroy-do gcp kubeconfig-gcp destroy-gcp hcloud kubeconfig-hcloud destroy-hcloud linode linode-post kubeconfig-linode destroy-linode
+.PHONY: aws kubeconfig-aws destroy-aws azure kubeconfig-azure destroy-azure do kubeconfig-do destroy-do gcp kubeconfig-gcp destroy-gcp hcloud kubeconfig-hcloud destroy-hcloud linode linode-post kubeconfig-linode destroy-linode
