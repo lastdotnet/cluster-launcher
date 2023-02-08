@@ -31,7 +31,7 @@ variable "nodes" {
     preemptible      = false
     machine_type     = "n2d-standard-8" # 8CPU/32GB
     min_capacity     = 1
-    max_capacity     = 4
+    max_capacity     = 10
     desired_capacity = 3
     disk_size        = 100
     disk_type        = "pd-ssd"
