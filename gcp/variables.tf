@@ -30,9 +30,9 @@ variable "nodes" {
   default = {
     preemptible      = false
     machine_type     = "n2d-standard-16" # 16CPU/64GB
+    desired_capacity = 1
     min_capacity     = 1
     max_capacity     = 10
-    desired_capacity = 1
     disk_size        = 100
     disk_type        = "pd-ssd"
   }

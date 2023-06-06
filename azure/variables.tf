@@ -12,10 +12,10 @@ variable "node_pool_settings" {
   description = "Cluster node pool settings"
   type        = map(string)
   default = {
-    desired_capacity = 3
-    max_capacity     = 10
+    desired_capacity = 1
     min_capacity     = 1
-    instance_type    = "Standard_D8as_v4" # 8CPU/32GB
+    max_capacity     = 10
+    instance_type    = "Standard_D16as_v4" # 16CPU/64GB
     disk_size        = 100
   }
 }

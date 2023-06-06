@@ -60,8 +60,8 @@ variable "nodes" {
       server_type = "cpx11" # 2CPU/2GB
     }
     worker = {
-      count       = 5
-      server_type = "ccx32" # 8CPU/32GB with dedicated AMD EPYC CPU
+      count       = 3
+      server_type = "ccx42" # 16CPU/64GB with dedicated AMD EPYC CPU
     }
     common = {
       image   = "ubuntu-20.04"

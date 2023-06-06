@@ -46,9 +46,9 @@ variable "node_group_settings" {
   })
   default = {
     desired_capacity = 1
-    max_capacity     = 10
     min_capacity     = 1
-    instance_types   = ["m5a.2xlarge"] # 8CPU/32GB
+    max_capacity     = 10
+    instance_types   = ["m5a.4xlarge"] # 16CPU/64GB
     disk_size        = 100
   }
 }
