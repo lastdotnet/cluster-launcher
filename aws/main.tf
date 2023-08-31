@@ -38,7 +38,7 @@ module "eks" {
       desired_size = var.node_group_settings.desired_capacity
 
       instance_types = var.node_group_settings.instance_types
-      capacity_type  = "SPOT"
+      capacity_type  = "ON_DEMAND"
       iam_role_additional_policies = {
         AmazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
       }
