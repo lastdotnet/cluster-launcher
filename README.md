@@ -1,13 +1,7 @@
-# THORChain Cluster Launcher
+# LastNetwork Cluster Launcher
 
-****
-
-> **Mirror**
 >
-> This repo mirrors from THORChain Gitlab to Github.
-> To contribute, please contact the team and commit to the Gitlab repo:
->
-> <https://gitlab.com/thorchain/devops/cluster-launcher>
+> <https://github.com/LastL2/devops/cluster-launcher>
 
 ****
 
@@ -23,12 +17,11 @@ Terraform is a tool for building, changing, and versioning infrastructure safely
 
 ## Providers
 
-* [Amazon Web Services](docs/aws.md)
-* [Microsoft Azure](docs/azure.md)
-* [Digital Ocean](docs/do.md)
-* [Google Cloud Platform](docs/gcp.md)
-* [Hetzner Cloud](docs/hcloud.md)
-* [Linode](docs/linode.md)
+* [Amazon Web Services](https://docs.last.net/node-operators/kubernetes/setup-aws)
+* [Microsoft Azure](https://docs.last.net/node-operators/kubernetes/setup-azure)
+* [Digital Ocean](https://docs.last.net/node-operators/kubernetes/setup-digital-ocean)
+* [Google Cloud Platform](https://docs.last.net/node-operators/kubernetes/setup-google-cloud)
+* [Hetzner Cloud](https://docs.last.net/node-operators/kubernetes/setup-hcloud)
 
 ### Volume Snapshots Capabilities
 

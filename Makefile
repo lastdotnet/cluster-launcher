@@ -52,19 +52,5 @@ destroy-hcloud:
 	cd hcloud && terraform destroy
 	rm "$(HOME)/.kube/config-hcloud"
 
-linode:
-	@echo "Don't forget to run 'make linode-post' after this step."
-	@echo "Your cluster will not run as a proper THORNode if skipped."
-	@echo "Read the docs. Continue [y/n] " && read ans && [ $${ans:-N} == y ]
-	cd linode && terraform init && terraform apply
 
-linode-post:
-	cd linode && kubectl apply -f metrics-server.yml
-
-kubeconfig-linode:
-	KUBECONFIG="$(HOME)/.kube/config:$(HOME)/.kube/config-linode" kubectl config view --flatten > "$(HOME)/.kube/tmpcfg" && mv -f "$(HOME)/.kube/tmpcfg" "$(HOME)/.kube/config" && kubectl config use-context $(shell kubectl config current-context --kubeconfig="$(HOME)/.kube/config-linode")
-
-destroy-linode:
-	cd linode && terraform destroy
-
-.PHONY: aws kubeconfig-aws destroy-aws azure kubeconfig-azure destroy-azure do kubeconfig-do destroy-do gcp kubeconfig-gcp destroy-gcp hcloud kubeconfig-hcloud destroy-hcloud linode linode-post kubeconfig-linode destroy-linode
+.PHONY: aws kubeconfig-aws destroy-aws azure kubeconfig-azure destroy-azure do kubeconfig-do destroy-do gcp kubeconfig-gcp destroy-gcp hcloud kubeconfig-hcloud destroy-hcloud
