@@ -32,7 +32,6 @@ Azure    | no
 DO       | yes
 GCP      | yes
 hcloud   | no
-Linode   | no
 
 ## LastNode
 
