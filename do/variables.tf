@@ -28,7 +28,7 @@ variable "name" {
 variable "tags" {
   description = "Cluster tags"
   type        = list(string)
-  default     = ["Terraform", "THORNode"]
+  default     = ["Terraform", "LastNode"]
 }
 
 variable "node_group_settings" {

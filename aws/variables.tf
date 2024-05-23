@@ -31,7 +31,7 @@ variable "tags" {
   type        = map(string)
   default = {
     Terraform = true
-    THORNode  = true
+    LastNode  = true
   }
 }
 

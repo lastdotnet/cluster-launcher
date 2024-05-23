@@ -5,7 +5,7 @@
 
 ****
 
-Create ready-to-go Kubernetes clusters for deploying a THORNode on selected providers.
+Create ready-to-go Kubernetes clusters for deploying a LastNode on selected providers.
 
 ## Requirements
 
@@ -34,9 +34,9 @@ GCP      | yes
 hcloud   | no
 Linode   | no
 
-## THORNode
+## LastNode
 
-Once you have a Kubernetes cluster up and running, please refer to the [documentation here](https://gitlab.com/thorchain/devops/node-launcher) to get started with your THORNode.
+Once you have a Kubernetes cluster up and running, please refer to the [documentation here](https://docs.last.net/node-operators/deploying) to get started with your LastNode.
 
 ## Development
 
