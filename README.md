@@ -1,7 +1,7 @@
 # LastNetwork Cluster Launcher
 
 >
-> <https://github.com/LastL2/devops/cluster-launcher>
+> <https://github.com/LastL2/cluster-launcher>
 
 ****
 
